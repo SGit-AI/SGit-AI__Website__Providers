@@ -1,0 +1,441 @@
+# providers.sgit.ai — the whole site as markdown
+site v0.1.0 · source vault commit 7d1916aca5f3 · every claim's verification state is at /ledger/
+
+Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider indexed here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.
+
+This document is released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0).
+
+
+==============================================================================
+PAGE /  —  Where the key goes — provider reports for people who have to deploy one
+==============================================================================
+
+---
+title: Where the key goes — provider reports for people who have to deploy one
+description: "The hub of the *.providers.sgit.ai family: four credential patterns, one page contract, and one site per provider reporting what it cost on a named workload, what broke, and where the key has to live."
+lead: "One question decides most integrations and almost nobody writes it down: **where does the credential live, and what bounds it.** This is the hub for a family of sites that answer it one provider at a time — with dates, costs and failures attached."
+order: 1
+toc: true
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+  note: "The four patterns come from the source vault; everything about a provider comes from that provider's own site."
+---
+
+<div class="warnbox"><p><b>Neither domain in this family resolves yet.</b> {{claim:domains-unconfigured}} <code>providers.sgit.ai</code> and <code>elevenlabs.providers.sgit.ai</code> are not yet pointed at their repositories, so both sites serve from their GitHub Pages project paths — and every link here goes to where a site <em>actually is</em> rather than where it will be. A build check fails if one points at a canonical domain instead, because a hub whose links are all dead is worse than no hub.</p></div>
+
+## The argument, in one paragraph
+
+Vendor documentation tells you what an API does. It does not tell you **what it cost on a named workload on a named date**, **what broke**, or **which credential patterns the product can actually support** — and the third one is the question that decides your architecture. A site in this family exists to answer those three, per provider, with every claim carrying the state that says how far it can be trusted.
+
+The strongest form of the answer is a pattern rather than a rule: *a browser application can use a paid API without ever holding the key, because a host holds it and enforces the terms.* That is [pattern three](/patterns/), it is [specified and not shipped](/contract/) {{claim:sg-tts-spec}}, and saying so is the point.
+
+## The family
+
+{{family}}
+
+## The two axes
+
+Everything in this family is indexed on two questions that are usually mixed together. They are orthogonal, and the intersection is [on the patterns page](/patterns/).
+
+<div class="beforeafter"><div class="ba now"><h4>The credential pattern — a property of the <em>provider</em></h4><p>Where the credential lives and what bounds it: <b>nothing</b>, <b>a spend limit</b>, <b>a clock</b>, or <b>a host the application cannot reach</b>. It is decided by what the vendor's product can mint, and no amount of care in your code changes it.</p><p><a href="/patterns/">The four patterns &rarr;</a></p></div><div class="ba then"><h4>The capability tier — a property of <em>your tool</em></h4><p>What state it keeps: <b>none</b>, <b>this device</b>, or <b>a vault</b>. It decides whether your tool works for somebody with no key, and whether it survives being downloaded and run somewhere else.</p><p><a href="/patterns/#the-second-axis-what-the-tool-keeps">The tier axis &rarr;</a></p></div></div>
+
+## What makes this different from a review site
+
+**Nothing here is replaceable by a link to the vendor.** If a section could be, it should be deleted — the vendor's own documentation is better and stays fresher.
+
+**Every claim carries a state.** Six of them, from *verified by execution on this date* to *specified and not shipped*, joined to the pages that make them at build time. A claim that appears on a page and not in a ledger fails the build. [How that works, and the current mix across the family →](/evidence/)
+
+**The failures are published.** Including our own: the first render in this family broke four times before it made a sound, and [one of the four was our bug rather than the vendor's](https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs/video/).
+
+**And there is no commercial relationship with anybody.** [None](/disclosures/), checked and dated, with the page built before there was anything to disclose so that its later appearance cannot be read as a signal.
+
+## The one measurement worth reading first
+
+<div class="fails"><div class="fail ok"><p class="who">3 September 2026 · OpenRouter</p><h3>A 402 that was the point, not an outage</h3><p>At <b>$4.79 used against a $5.00 limit</b> on a provisioned key, every audio request was refused: <code>402 — this request requires at least $0.50 in balance for audio output</code>, with <code>limit_source: openrouter_key_limit</code>. {{claim:openrouter-402}}</p><p>That is a bound doing its job, observed rather than described: chosen in advance, enforced by the platform rather than by our code, and visible in the refusal. <b>It is the only evidence in this family that any of this is enforceable in practice</b> — and the reason the comparison is worth generating, because the other provider here cannot do it at all {{claim:no-per-key-spend-limit}}.</p></div></div>
+
+==============================================================================
+PAGE /comparison/  —  Comparison — provider × pattern
+==============================================================================
+
+---
+title: Comparison — provider × pattern
+description: "One row per provider and product, one column per credential pattern, synced from each provider site's own published front-matter rather than kept here."
+lead: "One row per provider and product, one column per pattern. **This hub keeps no opinion of its own**: every row is copied from that provider's site at sync time, so a wrong row is wrong on the provider's own page first — which is where a correction belongs."
+order: 20
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+---
+
+{{comparison}}
+
+## How this table is made
+
+Each provider site publishes two things for its own purposes: **the markdown twin of its report**, which carries a `patterns:` block in its front-matter, and **the claim index** its own search pane matches against. `bin/sync-providers.py` reads both and writes `data/providers.yml`; the build reads that file and never touches the network.
+
+That is deliberate in three ways:
+
+- **A sync is a dated act.** The date is printed under the table, and CI does not silently refresh it. If the data is stale, the staleness is visible rather than guessed at.
+- **The build is reproducible and offline.** A site whose build depends on the network is a site that breaks when somebody else deploys.
+- **There is one source of truth per fact, and it is not here.** A hub that maintains its own table of other people's properties will drift from them, and it will be the hub that is wrong.
+
+`bin/sync-providers.py --check` reports drift without changing anything, which is the form CI could take if this ever needs to be automatic.
+
+## Reading down the columns
+
+**Column 0 is the same everywhere:** possible, and never acceptable. It is in the table because "the browser can call it" is what people usually mean by client-side, and CORS permitting a call says nothing about whether the credential is bounded.
+
+**Column 1 is where providers part company.** One in this family can mint a key with a spend limit and a reset {{claim:openrouter-402}}; the other cannot, at any price {{claim:no-per-key-spend-limit}}. That is not a difference of degree, and it is the single most useful thing this table shows.
+
+**Column 2 needs a server, and the question is whose.** "Available with a server" and "available" are not the same claim; the last column says which.
+
+**Column 3 is the one this estate can extend to any provider** by adding a verb to the host bridge and a terms file to the vault. It is shipped for a model router and specified for a voice API {{claim:sg-tts-spec}} — and until it ships, the column is a plan rather than a product.
+
+==============================================================================
+PAGE /contract/  —  The contract — what a provider site owes
+==============================================================================
+
+---
+title: The contract — what a provider site owes
+description: "The nine fixed sections, the six claim states, the composition rules and the build discipline that every site in this family obeys, so that a second provider is a Markdown file rather than a rewrite."
+lead: "The reason a comparison across these sites means anything is that they are not free to answer different questions. This is the contract: **nine sections, six states, and a short list of things that are build failures rather than review comments.**"
+order: 40
+toc: true
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+  note: "The nine sections come from the source vault's TEMPLATE.md; everything else was learned by building the first site."
+---
+
+## 1 · The nine sections, fixed
+
+Not added to, not reordered, not merged. A provider page that skips §9 is the thing this family exists not to be.
+
+| # | Section | What it is for |
+|---|---|---|
+| 1 | **Disclosure** | One line: commercial relationship, or none, with the date it was checked |
+| 2 | **What it grants** | The capability block — verb × object class × reach, reversibility marked — in two layers: what the platform can grant per product, and what *your* scoped key grants |
+| 3 | **Which pattern** | Which of [the four](/patterns/) this provider supports and which it forbids, **per product** |
+| 4 | **Where the key goes** | The exact mechanism, quoted with the product it belongs to, the URL and the date read |
+| 5 | **The bounding primitive** | What caps the blast radius — and what it does **not** cap |
+| 6 | **The minimal working example** | The smallest thing that runs, as a file rather than a snippet |
+| 7 | **What we use it for** | Named workloads, so the page is a report rather than a tutorial |
+| 8 | **What it cost** | Date, workload size, model, request count, price. These go stale fastest |
+| 9 | **What went wrong** | The failures, the limits hit, the surprises. **The section nobody else writes** |
+
+**Sections 8 and 9 get the visual weight.** If a reader takes one screenshot from a provider site, it should be §9.
+
+## 2 · The rule that has already caught somebody
+
+**Credential rules are stated per product, never per vendor.**
+
+The first site in this family had to correct its own source brief on exactly this: a "never expose your key client-side" rule, a 15-minute signed URL and a hostname allowlist were quoted as the vendor's rules when they belong to one of that vendor's products. The endpoint actually in use has none of those mechanisms. Quoting the wrong product's rule would have sent a reader off to build a signed-URL minter for an endpoint that does not accept one.
+
+So: **every quote carries the product it belongs to, the URL, and the date it was read.** The correction is published on the site rather than quietly applied, because a site that corrects itself in public is the only kind whose uncorrected claims are worth anything.
+
+## 3 · The six claim states
+
+{{evidence}}
+
+Every factual claim on every site in this family carries one of these, and the join is done at build time: **a claim that appears on a page and not in that site's ledger fails the build.** [More on why, and what the states mean →](/evidence/)
+
+## 4 · Composition rules
+
+- **A cross-link points at the page that answers the question**, never at a domain. A domain link is a referral rather than a composition, and it is this family's one recorded defect.
+- **Every page is served as markdown at the same path**, so an agent never has to parse HTML and never has to leave the markdown surface once it arrives.
+- **Machine-readable where it is cheap**: `llms.txt`, `llms-full.txt`, and a claim index each site publishes for its own search. This hub syncs from those rather than from anything bespoke.
+- **The canonical URL is the intent, the link is the reality.** While a domain is unconfigured, links go where the site actually serves {{claim:domains-unconfigured}} and the page says so.
+
+## 5 · What is a build failure rather than a review comment
+
+Learned by building the first site, and each one is enforced by a check rather than remembered:
+
+| Check | Why it exists |
+|---|---|
+| The build is **reproducible** — the committed output matches the sources | Markdown is the source of truth; a stale build publishes prose nobody wrote |
+| **Version agreement** across every page badge, the release history and both machine indexes | A blanket bump that misses a page ships two versions of one site |
+| **Internal links resolve**, and every canonical URL is on the host in `CNAME` | The two ways a static site quietly breaks |
+| **No root-absolute internal URL** | The first site shipped one and served unstyled under a project path for a day |
+| **No bare `<https://…>` autolink** | It reaches the browser as an unknown tag and the URL vanishes from the page |
+| **A key-shape scan** over the whole tree, including the built output | These repositories are public; the vaults they came from were not |
+| **Every claim cited**, and every state dated | The contract, enforced instead of promised |
+| **The disclosure line present** on every page, and no vendor described as a collaborator it is not | A disclosure found at the bottom does the opposite of its job |
+
+## 6 · The release discipline
+
+The same as every other site in this estate: **validate → tag → deploy**, in that order, with a failure at any stage stopping the release. One file owns the version, the release commit's subject repeats it, and CI refuses to tag if the two disagree. Every push to the release branch is a minor.
+
+That is not ceremony. It is what makes "as of v0.2.1, this claim was verified" a statement somebody can check a year later.
+
+==============================================================================
+PAGE /disclosures/  —  Disclosures
+==============================================================================
+
+---
+title: Disclosures
+description: "Every commercial relationship between this estate and any provider written about across this family, in one place. There are none. Created before any exists."
+lead: "Every commercial relationship between this estate and any provider written about across this family, in one place — **created before any relationship exists**, so that the existence of a page about a vendor is not read as evidence of a relationship with them."
+order: 90
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+---
+
+| Provider | Relationship | Since | Checked |
+|---|---|---|---|
+| ElevenLabs | **None.** A self-paid key, and one free-tier key supplied by the project lead for a single render on 8 September 2026. No credits, no programme, no agreement | — | 8 September 2026 |
+| OpenRouter | **None.** Pay-as-you-go on a self-minted key, list price | — | 8 September 2026 |
+
+## Pending, and recorded before it happens
+
+| What | State | Date |
+|---|---|---|
+| **ElevenLabs Grants Program** — a case has been written up on the ElevenLabs site; **no application has been made** | Not applied for | Written 8 September 2026 |
+
+**The ordering is the commitment.** If an application is made, it is recorded here **on the day it is made** rather than on the day it is granted, and every page produced with granted characters says so. A site that discovers its own funding halfway down a page has already lost the argument it was making.
+
+## The commitments this page makes
+
+- If a developer programme, credit grant, discount or commercial agreement of any kind starts with any provider, it is **recorded here first**, then in one line at the top of that provider's site, with the date.
+- **Nothing in this family is paid placement.** No vendor has reviewed, approved or seen any page here before publication.
+- **No affiliate links.** A link to a vendor goes to the vendor's own documentation, with the date it was read.
+- **No resale.** Where a provider's terms prohibit reselling capacity — and at least one in this family does, explicitly — nothing built here assumes it can be passed on.
+
+## Non-affiliation
+
+**Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider written about here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.**
+
+No vendor logo, wordmark or brand colour appears anywhere in this family. The palette is the sgit.ai house palette, used across the estate.
+
+## Corrections
+
+If you work at a provider written about here and something is **wrong**, the correction path is the repository of the site that says it — each page links to its own source, and every page is served as markdown at the same path. Corrections of fact are made with the date they were made, and the [claim states](/evidence/) keep the correction visible rather than letting a paragraph be quietly rewritten.
+
+==============================================================================
+PAGE /evidence/  —  Evidence — the six states, and the family's mix
+==============================================================================
+
+---
+title: Evidence — the six states, and the family's mix
+description: "Every claim on every site in this family carries one of six verification states. Here is what each means, why the model exists, and how much of the family is actually verified rather than read in a vendor's documentation."
+lead: "**No claim without a state.** Six of them, joined to the pages that make them at build time, so a claim cannot appear on a page without appearing in a ledger. This page says what they mean — and rolls up how much of the family is actually verified."
+order: 50
+toc: true
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+---
+
+## The six states
+
+| Chip | Means | What you may do with it |
+|---|---|---|
+| {{badge:verified}} | Somebody ran it and watched it work, on that date, in a named place | Treat as fact for that date and that setup |
+| {{badge:measured}} | Our own pipeline produced this number on a named workload | Treat as fact about *our* workload; yours will differ |
+| {{badge:docs}} | Read in the vendor's documentation on that date; never executed by us | Check it against the vendor before relying on it — and tell us if it moved |
+| {{badge:spec}} | A written specification for something that does not exist | Never plan around it. Future tense only |
+| {{badge:unrun}} | Code we wrote and have never executed | Read it, then run it and find out. Expect it to be wrong somewhere |
+| {{badge:projected}} | Arithmetic, with its workings shown | Re-do the arithmetic with your own numbers |
+
+## Why a model rather than a disclaimer
+
+Because the alternative is a page that is *mostly* true and gives you no way to tell which parts.
+
+The first site in this family was written by a machine that **could not reach the API it was documenting**. A small, specific set of things was verified in a browser by a human; everything else was read from the vendor's reference. A disclaimer at the top would have covered both and distinguished neither. Six states, attached per sentence and joined to a table, mean a reader can see exactly which half they are standing on.
+
+**It also changes what a correction is.** When that site's first render finally ran, four claims changed state in one afternoon and two predictions turned out wrong. With a ledger, that is a dated row moving from `written, not run` to `verified` — visible, checkable, and worth publishing. Without one, it is a paragraph quietly rewritten.
+
+## The mix, across the family
+
+{{evidence}}
+
+**Read the `docs` column as the honest debt.** Those are facts taken from a vendor's own documentation and never executed by anybody here — true when read, on the date shown, and the first thing to check if something behaves oddly. **Read `unrun` as the invitation:** code published so somebody can run it, badged so nobody mistakes it for tested.
+
+**And read `verified` narrowly.** It means somebody watched it work once, in one place, on one account tier. The most-cited verified claim in this family — that a provider's alignment matches its audio to the millisecond — was measured on nine files on a free-tier key in one afternoon. That is enormously better than a guess, and it is not a guarantee.
+
+## Where the claims live
+
+Each provider site keeps its own ledger, publishes it as a page, and publishes a machine-readable index of it that this hub syncs. **The hub does not hold a copy of anybody's claims** — the counts above are read from those indexes at sync time {{claim:family-live}}, and the links go to the ledgers themselves.
+
+==============================================================================
+PAGE /ledger/  —  The hub's own claim ledger
+==============================================================================
+
+---
+title: The hub's own claim ledger
+description: "This hub reports on other sites, so it makes few claims of its own — but the ones it makes are held to the same rule as the sites it indexes: every claim carries a state, a date and a source, and a claim that appears on a page and not in this table fails the build."
+lead: "**Six claims, because a hub should not have many.** The measurements belong to the provider sites; what is left here is what the hub itself asserts — about the family, the domains, and the synced tables. Each row says how we know."
+order: 55
+toc: true
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+---
+
+## Why this table is short
+
+A provider site earns its claims by running the API: it has a ledger of dozens of rows because it
+has dozens of measurements. This hub runs nothing. It has exactly the claims it needs to describe
+the family and the sync, and no more — and where it repeats a provider's finding, the row names the
+site that measured it rather than restating it as the hub's own work.
+
+That is the same rule the [contract](/contract/) puts on every site in the family, applied here first.
+[What the six states mean →](/evidence/)
+
+{{ledger}}
+
+## What is not in this table
+
+Everything the provider sites measured. The counts on the [comparison matrix](/comparison/) and on
+[the sites page](/sites/) are read from each site's published index at sync time, and the state chips
+there link into **that site's** ledger, not this one. The hub does not hold a second copy of anybody's
+claims, because a copy is a thing that can drift. [How the sync works →](/evidence/)
+
+==============================================================================
+PAGE /patterns/  —  The four client-side credential patterns
+==============================================================================
+
+---
+title: The four client-side credential patterns
+description: "Client side is not one thing. It is four patterns that differ in where the credential lives and what bounds it — plus a second axis, what your tool keeps, and the intersection of the two."
+lead: "\"Client side\" is not one thing. It is four patterns, and they differ in exactly two ways: **where the credential lives**, and **what bounds it**. Every provider site in this family answers with one of these, per product, because a vendor with several products has several answers."
+order: 10
+toc: true
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+  note: "Canonical here. A provider site answers these rather than redefining them."
+---
+
+## The four
+
+{{claim:patterns-canonical}}
+
+| # | Pattern | Where the credential lives | What bounds it | Verdict |
+|---|---|---|---|---|
+| **0** | **Key in the page** | In the delivered application | **Nothing** | **Never.** Anybody who opens the page has the key and the account. A plan quota is a ceiling, not a bound: it belongs to the whole account |
+| **1** | **Bounded key** in the page | In the page, provisioned per user with a spending limit and a reset | **Money, and a reset window** | Acceptable where the platform can mint one. The limit *is* the blast radius, so choosing the number is a risk decision rather than a default |
+| **2** | **Short-lived token** | Not in the page. A server exchanges the real key for a token with a short life | **Time, and the server's policy** | The standard answer — and it needs a server: the vendor's, if it offers one for that product, otherwise yours |
+| **3** | **Host holds the key** | Never in the application. The application asks a host, which holds the key and enforces the terms | **The host, which the application cannot reach** | The strongest, and this estate's own: the only pattern where the bounded thing cannot reach the bounding thing |
+
+**The ladder is not a maturity model.** Pattern 1 with a $5 limit can be a better answer than pattern 2 with a badly-scoped minter. The question is always *what is the blast radius, and who chose it.*
+
+## Why pattern three is different in kind
+
+Patterns 0 to 2 all end with a credential in the hands of the code that spends it — for a moment in pattern 2, for good in pattern 0. Pattern 3 does not: the application asks for a **result**, and the host holds the credential, applies the terms, and returns only the output.
+
+In this estate the vault host already does that for a model call: the app frame never sees the key and cannot read the sealed config under any grant it can be given, and the terms — allowed models, spend cap per session, per-app overrides — live in the vault with the content they govern. **The terms travel with the data**, so a vault shared read-only carries neither the key nor the ability to spend against it.
+
+Whether that generalises past a model call is the open question this family exists to answer. For a voice API the answer is written down and not yet built {{claim:sg-tts-spec}}.
+
+## The second axis: what the tool keeps
+
+The four patterns are a property of **the provider**. There is a second axis and it is a property of **your tool**: what state it keeps. It decides whether the tool works for somebody with no key at all, and whether it survives being downloaded and run somewhere else.
+
+| Tier | What it keeps | Works with no key? | Survives being downloaded? |
+|---|---|---|---|
+| **1** | Nothing. A pure function in a page | **Yes** | Yes, completely |
+| **2** | This browser's `localStorage`, on this device | No | Yes, and it carries no key with it |
+| **3** | A vault, which holds the key the page never sees | Yes — the *vault* holds it | **No.** A vault app's calls fail on a static host, because the key is sealed to its owner |
+
+**The intersection is one sentence:** a tier-two tool holding a key in `localStorage` is **pattern 0 with a ceiling**, and a tier-three tool is **pattern 3**. Said once, the two axes stop competing to explain the same thing.
+
+**And the honest finding is the empty corner.** Across this family, tier three has no working tool: the pattern the argument recommends is the one it has not yet demonstrated. That is a state the ledger has a word for, and the pages use it rather than avoiding the subject.
+
+## What this means for a reader who has to ship
+
+Three questions, in order, and the provider sites answer them per product:
+
+1. **Can the vendor mint a bounded credential for the product I am using?** If yes, pattern 1 is available and the limit is your blast radius. If no, no amount of care in the page changes it.
+2. **Does the vendor run a minter for that product?** Some do, for some products, and it is easy to read a rule written for one product as a rule for the vendor. [That mistake has already been made once in this family and corrected in public.](/contract/)
+3. **Is there a host that can hold the key for you?** If there is, nothing else on this page matters. If there is not, you are choosing between 1 and 2 and the answer is a risk decision, not a technical one.
+
+[Which provider can do what →](/comparison/)
+
+==============================================================================
+PAGE /sites/  —  The provider sites
+==============================================================================
+
+---
+title: The provider sites
+description: "One site per provider, each answering the same nine sections about a different API. What is live, what is planned, and what adding one actually takes."
+lead: "One site per provider, each answering **the same questions about a different API**. The point of a family rather than one big site is that the questions stay fixed while the answers vary — which is the only way the comparison means anything."
+order: 30
+toc: true
+provenance:
+  commit: 7d1916aca5f3
+  date: 8 September 2026
+---
+
+{{family}}
+
+## Why one site per provider rather than one page each
+
+A page per provider on one site drifts into a feature grid: the same six headings, filled in with whatever the vendor's marketing says, and no room for the part that matters. A **site** per provider has room for the part that matters — the labs, the examples, the failures, the cost table, the ledger — and it forces the shared material out into a hub, which is this.
+
+The split is:
+
+| Lives here | Lives on the provider site |
+|---|---|
+| The four credential patterns, and the tier axis | Which of them **this** provider supports, per product |
+| The claim-state model, and the family roll-up | That site's own ledger, every claim with its date |
+| The comparison across providers | The cost table, the failures, the workloads |
+| Disclosures, estate-wide | The disclosure line for that provider, at the top of every page |
+| The page contract every site obeys | Everything the contract asks for |
+
+## What adding a provider actually takes
+
+The ElevenLabs site proved this by carrying a stub of the next one: **a provider page is one Markdown file with front-matter**, and the comparison follows from it. At the hub level, adding a site to this family is:
+
+1. **A repository**, from the same template — the build system, the gate and the release pipeline are the same files.
+2. **A `patterns:` block** in its report's front-matter, per product. That is what this hub syncs.
+3. **A row in `data/providers.yml`**, added by running `bin/sync-providers.py` rather than typed.
+
+**No template surgery, and no edit to the comparison page.** If adding the second provider requires either, the contract is wrong and the fix belongs in the contract rather than in the page.
+
+## What each site owes
+
+The short version — [the long version is the contract](/contract/):
+
+- **Nine sections, in order**, with cost and failures given the visual weight.
+- **No claim without a state**, and the states joined to the pages at build time.
+- **Credential rules per product**, never per vendor.
+- **Disclosure visible without scrolling**, on every page, not only on its own page.
+- **A markdown twin at every path**, so an agent never has to parse HTML.
+- **Cross-links that point at pages**, never at domains — a domain link is a referral rather than a composition.
+
+==============================================================================
+PAGE /versions/  —  Release history
+==============================================================================
+
+---
+title: Release history
+description: "Every release of this site, with what changed. The version is owned by admin/build/version.txt, must appear in the release commit's subject, and CI verifies the two agree before it tags anything."
+lead: "Every release of this hub, with what changed and when. The estate's convention: **one file owns the version**, the release commit's subject repeats it, and the pipeline refuses to tag anything if the two disagree."
+order: 95
+---
+
+<div class="tablewrap"><table class="vers"><thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead><tbody>
+<!-- releases -->
+    <tr><td class="vnum">v0.1.0</td><td>2026-09-08</td><td>First release. The hub of the *.providers.sgit.ai family: the four credential patterns as canonical shared content with the capability-tier axis and their intersection; a comparison matrix synced from each provider site's own published front-matter rather than kept here; the family index; the page contract every provider site obeys, including the per-product rule that has already caught somebody; the six claim states with a roll-up of the family's actual mix; estate-wide disclosures; and the estate pipeline — validate → tag → deploy, a secret scan, relative URLs and a licence stamp, all enforced rather than promised.</td></tr>
+</tbody></table></div>
+
+## How a release is made here
+
+The same three steps as every other site in this estate — `validate` → `tag-release` → `deploy`.
+
+**One file owns the version:** `admin/build/version.txt`. The nav badge, the footer, `llms.txt` and the table above are all rendered from it, and the gate fails if any of them disagree.
+
+```bash
+bin/bump.py "what changed in this release"     # --major for vR.M+1.0
+python3 build.py
+admin/build/validate.sh
+git commit -am "site v0.1.1: what changed in this release"
+```
+
+**The commit subject is load-bearing.** `tag-release` reads `version.txt`, finds the commit whose *subject* carries the same version, and tags it — HEAD on a direct push, HEAD's parent when a pull request lands as a merge.
+
+## The sync is not part of the build
+
+`bin/sync-providers.py` refreshes `data/providers.yml` from the provider sites. **It is never run by CI**, because a build that reaches the network is a build that breaks when somebody else deploys, and because a sync should be a dated act rather than a silent one. `--check` reports drift without changing anything.

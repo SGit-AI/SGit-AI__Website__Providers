@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- SGit-AI estate: the release gate lives in admin/build/ -------------------
+# The Python template's `build/` rule matches any directory of that name at any
+# depth, which swallowed admin/build/ on a sibling site and shipped a release
+# without its gate. Un-ignore the directory, then its contents — git needs both.
+!admin/build/
+!admin/build/**

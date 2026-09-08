@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The four client-side credential patterns &mdash; Where the key goes</title>
+<meta name="description" content="Client side is not one thing. It is four patterns that differ in where the credential lives and what bounds it — plus a second axis, what your tool keeps, and the intersection of the two.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://providers.sgit.ai/patterns/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="providers.sgit.ai">
+<meta property="og:url" content="https://providers.sgit.ai/patterns/">
+<meta property="og:title" content="The four client-side credential patterns">
+<meta property="og:description" content="Client side is not one thing. It is four patterns that differ in where the credential lives and what bounds it — plus a second axis, what your tool keeps, and the intersection of the two.">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<nav class="site"><div class="row"><a class="brand" href="../index.html">providers<span>.sgit.ai</span></a><a class="parent" href="https://sgit.ai/vault/sg-bridge.html" rel="noopener" title="The window.sg bridge on sgit.ai — the host that would hold the key under pattern three, which is what this site is part of">&#8599; part of <b>sgit.ai</b></a><span class="stage-pill">the index</span><a class="ver" href="../versions/index.html" title="Site release history">v0.1.0</a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button><div class="nav-items"><div class="ni"><a class="nl" href="../index.html">The argument</a></div><div class="ni"><a class="nl here" href="../patterns/index.html">The four patterns</a></div><div class="ni"><a class="nl" href="../comparison/index.html">Comparison</a></div><div class="ni"><a class="nl" href="../sites/index.html">Provider sites</a></div><div class="ni"><a class="nl" href="../contract/index.html">The contract</a></div><div class="ni"><a class="nl" href="../evidence/index.html">Evidence</a></div><div class="ni"><a class="nl" href="../disclosures/index.html">Disclosures</a></div></div><a class="gh" href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">&#9733; Source</a></div></nav>
+<div class="disclosure-strip"><div class="row"><b>Independent.</b> No commercial relationship with any provider
+indexed here &mdash; no credits, no programme, no agreement &mdash; checked 8 September 2026.
+<a href="../disclosures/index.html">Disclosures</a> &middot; <a href="../evidence/index.html">how every number here is evidenced</a></div></div>
+<main class="doc">
+<p class="crumb"><a href="../index.html">providers.sgit.ai</a> / The four client-side credential patterns</p>
+<h1>The four client-side credential patterns</h1>
+<p class="lead">"Client side" is not one thing. It is four patterns, and they differ in exactly two ways: <strong>where the credential lives</strong>, and <strong>what bounds it</strong>. Every provider site in this family answers with one of these, per product, because a vendor with several products has several answers.</p>
+<p class="prov">Prose from the video vault at commit <code>7d1916aca5f3</code>, 8 September 2026. Canonical here. A provider site answers these rather than redefining them. When the vault moves ahead, this page is behind &mdash; and says so rather than guessing.</p>
+<aside class="toc"><b>On this page</b><a class="lv2" href="#the-four">The four</a><a class="lv2" href="#why-pattern-three-is-different-in-kind">Why pattern three is different in kind</a><a class="lv2" href="#the-second-axis-what-the-tool-keeps">The second axis: what the tool keeps</a><a class="lv2" href="#what-this-means-for-a-reader-who-has-to-ship">What this means for a reader who has to ship</a></aside>
+<h2 id="the-four">The four</h2>
+<p><a class="chip st-d" href="../ledger/index.html#claim-patterns-canonical" title="Read from the vendor&#x27;s documentation on this date. Never executed by us.">vendor docs 5 Sep 2026</a></p>
+<div class="tablewrap"><table><thead><tr><th>#</th><th>Pattern</th><th>Where the credential lives</th><th>What bounds it</th><th>Verdict</th></tr></thead><tbody><tr><td><strong>0</strong></td><td><strong>Key in the page</strong></td><td>In the delivered application</td><td><strong>Nothing</strong></td><td><strong>Never.</strong> Anybody who opens the page has the key and the account. A plan quota is a ceiling, not a bound: it belongs to the whole account</td></tr><tr><td><strong>1</strong></td><td><strong>Bounded key</strong> in the page</td><td>In the page, provisioned per user with a spending limit and a reset</td><td><strong>Money, and a reset window</strong></td><td>Acceptable where the platform can mint one. The limit <em>is</em> the blast radius, so choosing the number is a risk decision rather than a default</td></tr><tr><td><strong>2</strong></td><td><strong>Short-lived token</strong></td><td>Not in the page. A server exchanges the real key for a token with a short life</td><td><strong>Time, and the server's policy</strong></td><td>The standard answer — and it needs a server: the vendor's, if it offers one for that product, otherwise yours</td></tr><tr><td><strong>3</strong></td><td><strong>Host holds the key</strong></td><td>Never in the application. The application asks a host, which holds the key and enforces the terms</td><td><strong>The host, which the application cannot reach</strong></td><td>The strongest, and this estate's own: the only pattern where the bounded thing cannot reach the bounding thing</td></tr></tbody></table></div>
+<p><strong>The ladder is not a maturity model.</strong> Pattern 1 with a $5 limit can be a better answer than pattern 2 with a badly-scoped minter. The question is always <em>what is the blast radius, and who chose it.</em></p>
+<h2 id="why-pattern-three-is-different-in-kind">Why pattern three is different in kind</h2>
+<p>Patterns 0 to 2 all end with a credential in the hands of the code that spends it — for a moment in pattern 2, for good in pattern 0. Pattern 3 does not: the application asks for a <strong>result</strong>, and the host holds the credential, applies the terms, and returns only the output.</p>
+<p>In this estate the vault host already does that for a model call: the app frame never sees the key and cannot read the sealed config under any grant it can be given, and the terms — allowed models, spend cap per session, per-app overrides — live in the vault with the content they govern. <strong>The terms travel with the data</strong>, so a vault shared read-only carries neither the key nor the ability to spend against it.</p>
+<p>Whether that generalises past a model call is the open question this family exists to answer. For a voice API the answer is written down and not yet built <a class="chip st-s" href="../ledger/index.html#claim-sg-tts-spec" title="A specification. It does not exist yet.">specified, not shipped</a>.</p>
+<h2 id="the-second-axis-what-the-tool-keeps">The second axis: what the tool keeps</h2>
+<p>The four patterns are a property of <strong>the provider</strong>. There is a second axis and it is a property of <strong>your tool</strong>: what state it keeps. It decides whether the tool works for somebody with no key at all, and whether it survives being downloaded and run somewhere else.</p>
+<div class="tablewrap"><table><thead><tr><th>Tier</th><th>What it keeps</th><th>Works with no key?</th><th>Survives being downloaded?</th></tr></thead><tbody><tr><td><strong>1</strong></td><td>Nothing. A pure function in a page</td><td><strong>Yes</strong></td><td>Yes, completely</td></tr><tr><td><strong>2</strong></td><td>This browser's <code>localStorage</code>, on this device</td><td>No</td><td>Yes, and it carries no key with it</td></tr><tr><td><strong>3</strong></td><td>A vault, which holds the key the page never sees</td><td>Yes — the <em>vault</em> holds it</td><td><strong>No.</strong> A vault app's calls fail on a static host, because the key is sealed to its owner</td></tr></tbody></table></div>
+<p><strong>The intersection is one sentence:</strong> a tier-two tool holding a key in <code>localStorage</code> is <strong>pattern 0 with a ceiling</strong>, and a tier-three tool is <strong>pattern 3</strong>. Said once, the two axes stop competing to explain the same thing.</p>
+<p><strong>And the honest finding is the empty corner.</strong> Across this family, tier three has no working tool: the pattern the argument recommends is the one it has not yet demonstrated. That is a state the ledger has a word for, and the pages use it rather than avoiding the subject.</p>
+<h2 id="what-this-means-for-a-reader-who-has-to-ship">What this means for a reader who has to ship</h2>
+<p>Three questions, in order, and the provider sites answer them per product:</p>
+<ol><li><strong>Can the vendor mint a bounded credential for the product I am using?</strong> If yes, pattern 1 is available and the limit is your blast radius. If no, no amount of care in the page changes it.</li><li><strong>Does the vendor run a minter for that product?</strong> Some do, for some products, and it is easy to read a rule written for one product as a rule for the vendor. <a href="../contract/index.html">That mistake has already been made once in this family and corrected in public.</a></li><li><strong>Is there a host that can hold the key for you?</strong> If there is, nothing else on this page matters. If there is not, you are choosing between 1 and 2 and the answer is a risk decision, not a technical one.</li></ol>
+<p><a href="../comparison/index.html">Which provider can do what →</a></p>
+<p class="pagenav"><a href="../ledger/index.html">Every claim on this site, with its state &rarr;</a>
+<a href="../disclosures/index.html">Disclosures &rarr;</a></p>
+</main>
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">providers<span>.sgit.ai</span></div>
+    <p class="nonaff"><b>Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider written about here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.</b></p>
+    <p>The index of the provider reports. This site holds no measurement of its own: every number
+       on it is synced from the provider site that made it, and every table says which site and
+       which version it came from.</p>
+    <p class="licence">This document is released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). The code that builds it is Apache-2.0.</p>
+    <p class="verline">site <a href="../versions/index.html">v0.1.0</a> &middot; <a href="../evidence/index.html">how the tables are made</a> &middot; <a href="../disclosures/index.html">disclosures</a> &middot; <a href="index.md" title="The same page as plain markdown">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>The argument</h4>
+    <a href="../index.html">Where the key goes</a>
+    <a href="../patterns/index.html">The four patterns</a>
+    <a href="../comparison/index.html">Comparison matrix</a>
+    <a href="../contract/index.html">What a provider site must publish</a>
+  </div>
+  <div>
+    <h4>The family</h4>
+    <a href="../sites/index.html">Every provider site</a>
+    <a href="../evidence/index.html">Where these tables come from</a>
+    <a href="../ledger/index.html">The hub's own claims</a>
+    <a href="../versions/index.html">Versions</a>
+    <a href="../disclosures/index.html">Disclosures</a>
+  </div>
+  <div>
+    <h4>The estate</h4>
+    <a href="https://sgit.ai/why/" rel="noopener">Why sgit exists</a>
+    <a href="https://sgit.ai/vault/sg-bridge.html" rel="noopener">The host bridge (pattern three)</a>
+    <a href="https://open-source.sgit.ai/practice/" rel="noopener">Two licences, three layers</a>
+    <a href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">This site's source</a>
+  </div>
+</div>
+<div class="footnote"><p>No analytics. No cookies. No third-party fonts, scripts or CDN &mdash; every byte of this site
+is served from this domain. This site makes no API call at all: it has no key bar and no lab. The labs live on the
+provider sites, where the key is.</p></div>
+</footer>
+</body>
+</html>

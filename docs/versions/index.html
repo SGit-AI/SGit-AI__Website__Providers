@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Release history &mdash; Where the key goes</title>
+<meta name="description" content="Every release of this site, with what changed. The version is owned by admin/build/version.txt, must appear in the release commit&#x27;s subject, and CI verifies the two agree before it tags anything.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://providers.sgit.ai/versions/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="providers.sgit.ai">
+<meta property="og:url" content="https://providers.sgit.ai/versions/">
+<meta property="og:title" content="Release history">
+<meta property="og:description" content="Every release of this site, with what changed. The version is owned by admin/build/version.txt, must appear in the release commit&#x27;s subject, and CI verifies the two agree before it tags anything.">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<nav class="site"><div class="row"><a class="brand" href="../index.html">providers<span>.sgit.ai</span></a><a class="parent" href="https://sgit.ai/vault/sg-bridge.html" rel="noopener" title="The window.sg bridge on sgit.ai — the host that would hold the key under pattern three, which is what this site is part of">&#8599; part of <b>sgit.ai</b></a><span class="stage-pill">the index</span><a class="ver" href="../versions/index.html" title="Site release history">v0.1.0</a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button><div class="nav-items"><div class="ni"><a class="nl" href="../index.html">The argument</a></div><div class="ni"><a class="nl" href="../patterns/index.html">The four patterns</a></div><div class="ni"><a class="nl" href="../comparison/index.html">Comparison</a></div><div class="ni"><a class="nl" href="../sites/index.html">Provider sites</a></div><div class="ni"><a class="nl" href="../contract/index.html">The contract</a></div><div class="ni"><a class="nl" href="../evidence/index.html">Evidence</a></div><div class="ni"><a class="nl" href="../disclosures/index.html">Disclosures</a></div></div><a class="gh" href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">&#9733; Source</a></div></nav>
+<div class="disclosure-strip"><div class="row"><b>Independent.</b> No commercial relationship with any provider
+indexed here &mdash; no credits, no programme, no agreement &mdash; checked 8 September 2026.
+<a href="../disclosures/index.html">Disclosures</a> &middot; <a href="../evidence/index.html">how every number here is evidenced</a></div></div>
+<main class="doc">
+<p class="crumb"><a href="../index.html">providers.sgit.ai</a> / Release history</p>
+<h1>Release history</h1>
+<p class="lead">Every release of this hub, with what changed and when. The estate's convention: <strong>one file owns the version</strong>, the release commit's subject repeats it, and the pipeline refuses to tag anything if the two disagree.</p>
+
+
+<div class="tablewrap"><table class="vers"><thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead><tbody>
+<!-- releases -->
+    <tr><td class="vnum">v0.1.0</td><td>2026-09-08</td><td>First release. The hub of the *.providers.sgit.ai family: the four credential patterns as canonical shared content with the capability-tier axis and their intersection; a comparison matrix synced from each provider site's own published front-matter rather than kept here; the family index; the page contract every provider site obeys, including the per-product rule that has already caught somebody; the six claim states with a roll-up of the family's actual mix; estate-wide disclosures; and the estate pipeline — validate → tag → deploy, a secret scan, relative URLs and a licence stamp, all enforced rather than promised.</td></tr>
+</tbody></table></div>
+<h2 id="how-a-release-is-made-here">How a release is made here</h2>
+<p>The same three steps as every other site in this estate — <code>validate</code> → <code>tag-release</code> → <code>deploy</code>.</p>
+<p><strong>One file owns the version:</strong> <code>admin/build/version.txt</code>. The nav badge, the footer, <code>llms.txt</code> and the table above are all rendered from it, and the gate fails if any of them disagree.</p>
+<pre class="shell">bin/bump.py &quot;what changed in this release&quot;     # --major for vR.M+1.0
+python3 build.py
+admin/build/validate.sh
+git commit -am &quot;site v0.1.1: what changed in this release&quot;</pre>
+<p><strong>The commit subject is load-bearing.</strong> <code>tag-release</code> reads <code>version.txt</code>, finds the commit whose <em>subject</em> carries the same version, and tags it — HEAD on a direct push, HEAD's parent when a pull request lands as a merge.</p>
+<h2 id="the-sync-is-not-part-of-the-build">The sync is not part of the build</h2>
+<p><code>bin/sync-providers.py</code> refreshes <code>data/providers.yml</code> from the provider sites. <strong>It is never run by CI</strong>, because a build that reaches the network is a build that breaks when somebody else deploys, and because a sync should be a dated act rather than a silent one. <code>--check</code> reports drift without changing anything.</p>
+<p class="pagenav"><a href="../ledger/index.html">Every claim on this site, with its state &rarr;</a>
+<a href="../disclosures/index.html">Disclosures &rarr;</a></p>
+</main>
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">providers<span>.sgit.ai</span></div>
+    <p class="nonaff"><b>Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider written about here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.</b></p>
+    <p>The index of the provider reports. This site holds no measurement of its own: every number
+       on it is synced from the provider site that made it, and every table says which site and
+       which version it came from.</p>
+    <p class="licence">This document is released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). The code that builds it is Apache-2.0.</p>
+    <p class="verline">site <a href="../versions/index.html">v0.1.0</a> &middot; <a href="../evidence/index.html">how the tables are made</a> &middot; <a href="../disclosures/index.html">disclosures</a> &middot; <a href="index.md" title="The same page as plain markdown">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>The argument</h4>
+    <a href="../index.html">Where the key goes</a>
+    <a href="../patterns/index.html">The four patterns</a>
+    <a href="../comparison/index.html">Comparison matrix</a>
+    <a href="../contract/index.html">What a provider site must publish</a>
+  </div>
+  <div>
+    <h4>The family</h4>
+    <a href="../sites/index.html">Every provider site</a>
+    <a href="../evidence/index.html">Where these tables come from</a>
+    <a href="../ledger/index.html">The hub's own claims</a>
+    <a href="../versions/index.html">Versions</a>
+    <a href="../disclosures/index.html">Disclosures</a>
+  </div>
+  <div>
+    <h4>The estate</h4>
+    <a href="https://sgit.ai/why/" rel="noopener">Why sgit exists</a>
+    <a href="https://sgit.ai/vault/sg-bridge.html" rel="noopener">The host bridge (pattern three)</a>
+    <a href="https://open-source.sgit.ai/practice/" rel="noopener">Two licences, three layers</a>
+    <a href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">This site's source</a>
+  </div>
+</div>
+<div class="footnote"><p>No analytics. No cookies. No third-party fonts, scripts or CDN &mdash; every byte of this site
+is served from this domain. This site makes no API call at all: it has no key bar and no lab. The labs live on the
+provider sites, where the key is.</p></div>
+</footer>
+</body>
+</html>

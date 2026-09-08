@@ -1,0 +1,43 @@
+# The hub's own claims. It makes very few: almost everything it says is said on a
+# provider site first, and the hub links to it rather than restating it.
+
+- id: family-live
+  state: verified
+  date: 8 Sep 2026
+  group: The family
+  claim: "One provider site is live — **elevenlabs.providers.sgit.ai**, at v0.3.0, with 49 claims of its own in its ledger. A second, OpenRouter, is specified and not built. This page's tables are synced from the live site's own published front-matter, not typed here."
+  source: "bin/sync-providers.py, run against the site's markdown twin and claim index"
+
+- id: domains-unconfigured
+  state: verified
+  date: 8 Sep 2026
+  group: The family
+  claim: "**Neither canonical domain in this family resolves yet.** `providers.sgit.ai` and `elevenlabs.providers.sgit.ai` are not pointed at their repositories, so both sites serve from their GitHub Pages project paths. Every cross-link here goes to where a site actually is; a build check fails if one points at a canonical domain instead."
+  source: "Reported by the project lead, 8 September 2026, and enforced by tools/check_site.py"
+
+- id: patterns-canonical
+  state: docs
+  date: 5 Sep 2026
+  group: The argument
+  claim: "The four client-side credential patterns — key in the page, bounded key, short-lived token, host holds the key — are the estate's own framing, first written down on 5 September 2026. They are canonical **here**; a provider site answers them rather than redefining them."
+  source: "platforms/README.md in the source vault, commit 7d1916aca5f3"
+
+- id: openrouter-402
+  state: verified
+  date: 3 Sep 2026
+  group: The argument
+  claim: "At $4.79 used against a $5.00 provisioned limit, OpenRouter refused every audio request — `402`, *this request requires at least $0.50 in balance for audio output*, `limit_source: openrouter_key_limit`. **The bound worked**, which is the only evidence in this family that any of this is enforceable in practice rather than in a diagram."
+  source: "The render log of two blocked re-renders, 3 September 2026"
+
+- id: no-per-key-spend-limit
+  state: docs
+  date: 5 Sep 2026
+  group: The argument
+  claim: "ElevenLabs keys are **scoped, not bounded**: a key can be restricted to endpoints, and there is no per-key spend limit for text to speech. That asymmetry with OpenRouter is why the comparison table earns its place rather than being a feature grid."
+  source: "The ElevenLabs site's own report, §5"
+
+- id: sg-tts-spec
+  state: spec
+  group: The argument
+  claim: "Pattern three for a voice API — the vault host holding the key and serving `sg.tts.speak()` — **does not exist**. It is specified on the ElevenLabs site and named here only in the future tense."
+  source: "elevenlabs.providers.sgit.ai/pattern-three/"

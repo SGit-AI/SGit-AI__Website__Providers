@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The provider sites &mdash; Where the key goes</title>
+<meta name="description" content="One site per provider, each answering the same nine sections about a different API. What is live, what is planned, and what adding one actually takes.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://providers.sgit.ai/sites/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="providers.sgit.ai">
+<meta property="og:url" content="https://providers.sgit.ai/sites/">
+<meta property="og:title" content="The provider sites">
+<meta property="og:description" content="One site per provider, each answering the same nine sections about a different API. What is live, what is planned, and what adding one actually takes.">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<nav class="site"><div class="row"><a class="brand" href="../index.html">providers<span>.sgit.ai</span></a><a class="parent" href="https://sgit.ai/vault/sg-bridge.html" rel="noopener" title="The window.sg bridge on sgit.ai — the host that would hold the key under pattern three, which is what this site is part of">&#8599; part of <b>sgit.ai</b></a><span class="stage-pill">the index</span><a class="ver" href="../versions/index.html" title="Site release history">v0.1.0</a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button><div class="nav-items"><div class="ni"><a class="nl" href="../index.html">The argument</a></div><div class="ni"><a class="nl" href="../patterns/index.html">The four patterns</a></div><div class="ni"><a class="nl" href="../comparison/index.html">Comparison</a></div><div class="ni"><a class="nl here" href="../sites/index.html">Provider sites</a></div><div class="ni"><a class="nl" href="../contract/index.html">The contract</a></div><div class="ni"><a class="nl" href="../evidence/index.html">Evidence</a></div><div class="ni"><a class="nl" href="../disclosures/index.html">Disclosures</a></div></div><a class="gh" href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">&#9733; Source</a></div></nav>
+<div class="disclosure-strip"><div class="row"><b>Independent.</b> No commercial relationship with any provider
+indexed here &mdash; no credits, no programme, no agreement &mdash; checked 8 September 2026.
+<a href="../disclosures/index.html">Disclosures</a> &middot; <a href="../evidence/index.html">how every number here is evidenced</a></div></div>
+<main class="doc">
+<p class="crumb"><a href="../index.html">providers.sgit.ai</a> / The provider sites</p>
+<h1>The provider sites</h1>
+<p class="lead">One site per provider, each answering <strong>the same questions about a different API</strong>. The point of a family rather than one big site is that the questions stay fixed while the answers vary — which is the only way the comparison means anything.</p>
+<p class="prov">Prose from the video vault at commit <code>7d1916aca5f3</code>, 8 September 2026.  When the vault moves ahead, this page is behind &mdash; and says so rather than guessing.</p>
+<aside class="toc"><b>On this page</b><a class="lv2" href="#why-one-site-per-provider-rather-than-one-page-each">Why one site per provider rather than one page each</a><a class="lv2" href="#what-adding-a-provider-actually-takes">What adding a provider actually takes</a><a class="lv2" href="#what-each-site-owes">What each site owes</a></aside>
+<div class="cards"><a class="card" href="https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs/" rel="noopener"><span class="tag">voice · text to speech</span><h3>ElevenLabs</h3><p>Text to speech with character-level timestamps. Scoped keys, no per-key spend limit, and the first render&#x27;s four failures.</p><p class="small dim"><code>https://elevenlabs.providers.sgit.ai</code> &middot; <b>not resolving yet</b></p><div class="chips"><span class="chip st-v" title="Verified by execution on this date, by us.">verified</span><span class="chip st-m" title="Measured by our own pipeline on a named workload and date.">measured</span><span class="chip st-d" title="Read from the vendor&#x27;s documentation on this date. Never executed by us.">vendor docs</span></div><span class="go">Read the report &rarr;</span></a><div class="card card-planned"><span class="tag">models · one API, many models</span><h3>OpenRouter</h3><p>Provisioned keys with a spend limit and a reset — the one provider in this family that can do pattern one. Not built yet.</p><p class="small dim"><code>https://openrouter.providers.sgit.ai</code></p><div class="chips"><span class="chip st-s" title="A specification. It does not exist yet.">specified, not shipped</span></div><span class="go">Not built yet</span></div></div>
+<h2 id="why-one-site-per-provider-rather-than-one-page-each">Why one site per provider rather than one page each</h2>
+<p>A page per provider on one site drifts into a feature grid: the same six headings, filled in with whatever the vendor's marketing says, and no room for the part that matters. A <strong>site</strong> per provider has room for the part that matters — the labs, the examples, the failures, the cost table, the ledger — and it forces the shared material out into a hub, which is this.</p>
+<p>The split is:</p>
+<div class="tablewrap"><table><thead><tr><th>Lives here</th><th>Lives on the provider site</th></tr></thead><tbody><tr><td>The four credential patterns, and the tier axis</td><td>Which of them <strong>this</strong> provider supports, per product</td></tr><tr><td>The claim-state model, and the family roll-up</td><td>That site's own ledger, every claim with its date</td></tr><tr><td>The comparison across providers</td><td>The cost table, the failures, the workloads</td></tr><tr><td>Disclosures, estate-wide</td><td>The disclosure line for that provider, at the top of every page</td></tr><tr><td>The page contract every site obeys</td><td>Everything the contract asks for</td></tr></tbody></table></div>
+<h2 id="what-adding-a-provider-actually-takes">What adding a provider actually takes</h2>
+<p>The ElevenLabs site proved this by carrying a stub of the next one: <strong>a provider page is one Markdown file with front-matter</strong>, and the comparison follows from it. At the hub level, adding a site to this family is:</p>
+<ol><li><strong>A repository</strong>, from the same template — the build system, the gate and the release pipeline are the same files.</li><li><strong>A <code>patterns:</code> block</strong> in its report's front-matter, per product. That is what this hub syncs.</li><li><strong>A row in <code>data/providers.yml</code></strong>, added by running <code>bin/sync-providers.py</code> rather than typed.</li></ol>
+<p><strong>No template surgery, and no edit to the comparison page.</strong> If adding the second provider requires either, the contract is wrong and the fix belongs in the contract rather than in the page.</p>
+<h2 id="what-each-site-owes">What each site owes</h2>
+<p>The short version — <a href="../contract/index.html">the long version is the contract</a>:</p>
+<ul><li><strong>Nine sections, in order</strong>, with cost and failures given the visual weight.</li><li><strong>No claim without a state</strong>, and the states joined to the pages at build time.</li><li><strong>Credential rules per product</strong>, never per vendor.</li><li><strong>Disclosure visible without scrolling</strong>, on every page, not only on its own page.</li><li><strong>A markdown twin at every path</strong>, so an agent never has to parse HTML.</li><li><strong>Cross-links that point at pages</strong>, never at domains — a domain link is a referral rather than a composition.</li></ul>
+<p class="pagenav"><a href="../ledger/index.html">Every claim on this site, with its state &rarr;</a>
+<a href="../disclosures/index.html">Disclosures &rarr;</a></p>
+</main>
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">providers<span>.sgit.ai</span></div>
+    <p class="nonaff"><b>Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider written about here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.</b></p>
+    <p>The index of the provider reports. This site holds no measurement of its own: every number
+       on it is synced from the provider site that made it, and every table says which site and
+       which version it came from.</p>
+    <p class="licence">This document is released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). The code that builds it is Apache-2.0.</p>
+    <p class="verline">site <a href="../versions/index.html">v0.1.0</a> &middot; <a href="../evidence/index.html">how the tables are made</a> &middot; <a href="../disclosures/index.html">disclosures</a> &middot; <a href="index.md" title="The same page as plain markdown">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>The argument</h4>
+    <a href="../index.html">Where the key goes</a>
+    <a href="../patterns/index.html">The four patterns</a>
+    <a href="../comparison/index.html">Comparison matrix</a>
+    <a href="../contract/index.html">What a provider site must publish</a>
+  </div>
+  <div>
+    <h4>The family</h4>
+    <a href="../sites/index.html">Every provider site</a>
+    <a href="../evidence/index.html">Where these tables come from</a>
+    <a href="../ledger/index.html">The hub's own claims</a>
+    <a href="../versions/index.html">Versions</a>
+    <a href="../disclosures/index.html">Disclosures</a>
+  </div>
+  <div>
+    <h4>The estate</h4>
+    <a href="https://sgit.ai/why/" rel="noopener">Why sgit exists</a>
+    <a href="https://sgit.ai/vault/sg-bridge.html" rel="noopener">The host bridge (pattern three)</a>
+    <a href="https://open-source.sgit.ai/practice/" rel="noopener">Two licences, three layers</a>
+    <a href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">This site's source</a>
+  </div>
+</div>
+<div class="footnote"><p>No analytics. No cookies. No third-party fonts, scripts or CDN &mdash; every byte of this site
+is served from this domain. This site makes no API call at all: it has no key bar and no lab. The labs live on the
+provider sites, where the key is.</p></div>
+</footer>
+</body>
+</html>

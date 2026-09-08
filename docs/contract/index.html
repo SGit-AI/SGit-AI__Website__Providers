@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The contract — what a provider site owes &mdash; Where the key goes</title>
+<meta name="description" content="The nine fixed sections, the six claim states, the composition rules and the build discipline that every site in this family obeys, so that a second provider is a Markdown file rather than a rewrite.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://providers.sgit.ai/contract/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="providers.sgit.ai">
+<meta property="og:url" content="https://providers.sgit.ai/contract/">
+<meta property="og:title" content="The contract — what a provider site owes">
+<meta property="og:description" content="The nine fixed sections, the six claim states, the composition rules and the build discipline that every site in this family obeys, so that a second provider is a Markdown file rather than a rewrite.">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<nav class="site"><div class="row"><a class="brand" href="../index.html">providers<span>.sgit.ai</span></a><a class="parent" href="https://sgit.ai/vault/sg-bridge.html" rel="noopener" title="The window.sg bridge on sgit.ai — the host that would hold the key under pattern three, which is what this site is part of">&#8599; part of <b>sgit.ai</b></a><span class="stage-pill">the index</span><a class="ver" href="../versions/index.html" title="Site release history">v0.1.0</a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button><div class="nav-items"><div class="ni"><a class="nl" href="../index.html">The argument</a></div><div class="ni"><a class="nl" href="../patterns/index.html">The four patterns</a></div><div class="ni"><a class="nl" href="../comparison/index.html">Comparison</a></div><div class="ni"><a class="nl" href="../sites/index.html">Provider sites</a></div><div class="ni"><a class="nl here" href="../contract/index.html">The contract</a></div><div class="ni"><a class="nl" href="../evidence/index.html">Evidence</a></div><div class="ni"><a class="nl" href="../disclosures/index.html">Disclosures</a></div></div><a class="gh" href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">&#9733; Source</a></div></nav>
+<div class="disclosure-strip"><div class="row"><b>Independent.</b> No commercial relationship with any provider
+indexed here &mdash; no credits, no programme, no agreement &mdash; checked 8 September 2026.
+<a href="../disclosures/index.html">Disclosures</a> &middot; <a href="../evidence/index.html">how every number here is evidenced</a></div></div>
+<main class="doc">
+<p class="crumb"><a href="../index.html">providers.sgit.ai</a> / The contract — what a provider site owes</p>
+<h1>The contract — what a provider site owes</h1>
+<p class="lead">The reason a comparison across these sites means anything is that they are not free to answer different questions. This is the contract: <strong>nine sections, six states, and a short list of things that are build failures rather than review comments.</strong></p>
+<p class="prov">Prose from the video vault at commit <code>7d1916aca5f3</code>, 8 September 2026. The nine sections come from the source vault&#x27;s TEMPLATE.md; everything else was learned by building the first site. When the vault moves ahead, this page is behind &mdash; and says so rather than guessing.</p>
+<aside class="toc"><b>On this page</b><a class="lv2" href="#1-the-nine-sections-fixed">1 · The nine sections, fixed</a><a class="lv2" href="#2-the-rule-that-has-already-caught-somebody">2 · The rule that has already caught somebody</a><a class="lv2" href="#3-the-six-claim-states">3 · The six claim states</a><a class="lv2" href="#4-composition-rules">4 · Composition rules</a><a class="lv2" href="#5-what-is-a-build-failure-rather-than-a-review-comment">5 · What is a build failure rather than a review comment</a><a class="lv2" href="#6-the-release-discipline">6 · The release discipline</a></aside>
+<h2 id="1-the-nine-sections-fixed">1 · The nine sections, fixed</h2>
+<p>Not added to, not reordered, not merged. A provider page that skips §9 is the thing this family exists not to be.</p>
+<div class="tablewrap"><table><thead><tr><th>#</th><th>Section</th><th>What it is for</th></tr></thead><tbody><tr><td>1</td><td><strong>Disclosure</strong></td><td>One line: commercial relationship, or none, with the date it was checked</td></tr><tr><td>2</td><td><strong>What it grants</strong></td><td>The capability block — verb × object class × reach, reversibility marked — in two layers: what the platform can grant per product, and what <em>your</em> scoped key grants</td></tr><tr><td>3</td><td><strong>Which pattern</strong></td><td>Which of <a href="../patterns/index.html">the four</a> this provider supports and which it forbids, <strong>per product</strong></td></tr><tr><td>4</td><td><strong>Where the key goes</strong></td><td>The exact mechanism, quoted with the product it belongs to, the URL and the date read</td></tr><tr><td>5</td><td><strong>The bounding primitive</strong></td><td>What caps the blast radius — and what it does <strong>not</strong> cap</td></tr><tr><td>6</td><td><strong>The minimal working example</strong></td><td>The smallest thing that runs, as a file rather than a snippet</td></tr><tr><td>7</td><td><strong>What we use it for</strong></td><td>Named workloads, so the page is a report rather than a tutorial</td></tr><tr><td>8</td><td><strong>What it cost</strong></td><td>Date, workload size, model, request count, price. These go stale fastest</td></tr><tr><td>9</td><td><strong>What went wrong</strong></td><td>The failures, the limits hit, the surprises. <strong>The section nobody else writes</strong></td></tr></tbody></table></div>
+<p><strong>Sections 8 and 9 get the visual weight.</strong> If a reader takes one screenshot from a provider site, it should be §9.</p>
+<h2 id="2-the-rule-that-has-already-caught-somebody">2 · The rule that has already caught somebody</h2>
+<p><strong>Credential rules are stated per product, never per vendor.</strong></p>
+<p>The first site in this family had to correct its own source brief on exactly this: a "never expose your key client-side" rule, a 15-minute signed URL and a hostname allowlist were quoted as the vendor's rules when they belong to one of that vendor's products. The endpoint actually in use has none of those mechanisms. Quoting the wrong product's rule would have sent a reader off to build a signed-URL minter for an endpoint that does not accept one.</p>
+<p>So: <strong>every quote carries the product it belongs to, the URL, and the date it was read.</strong> The correction is published on the site rather than quietly applied, because a site that corrects itself in public is the only kind whose uncorrected claims are worth anything.</p>
+<h2 id="3-the-six-claim-states">3 · The six claim states</h2>
+<div class="tiles tiles-sm"><div class="tile"><b>14</b><span>verified</span></div><div class="tile"><b>8</b><span>measured</span></div><div class="tile"><b>14</b><span>vendor docs</span></div><div class="tile"><b>2</b><span>specified, not shipped</span></div><div class="tile"><b>8</b><span>written, not run</span></div><div class="tile"><b>3</b><span>projected</span></div></div><div class="tablewrap"><table><thead><tr><th>Site</th><th>Claims</th><th>Mix</th><th>verified</th><th>measured</th><th>vendor docs</th><th>specified, not shipped</th><th>written, not run</th><th>projected</th></tr></thead><tbody><tr><th scope="row"><a href="https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs/ledger/" rel="noopener">ElevenLabs</a></th><td>49</td><td class="ebars"><span class="ebar st-d" style="width:28.6%" title="docs: 14"></span><span class="ebar st-m" style="width:16.3%" title="measured: 8"></span><span class="ebar st-p" style="width:6.1%" title="projected: 3"></span><span class="ebar st-s" style="width:4.1%" title="spec: 2"></span><span class="ebar st-u" style="width:16.3%" title="unrun: 8"></span><span class="ebar st-v" style="width:28.6%" title="verified: 14"></span></td><td>14</td><td>8</td><td>14</td><td>2</td><td>8</td><td>3</td></tr></tbody></table></div><p class="small dim">Synced 2026-09-08 from each site's published claim index.</p>
+<p>Every factual claim on every site in this family carries one of these, and the join is done at build time: <strong>a claim that appears on a page and not in that site's ledger fails the build.</strong> <a href="../evidence/index.html">More on why, and what the states mean →</a></p>
+<h2 id="4-composition-rules">4 · Composition rules</h2>
+<ul><li><strong>A cross-link points at the page that answers the question</strong>, never at a domain. A domain link is a referral rather than a composition, and it is this family's one recorded defect.</li><li><strong>Every page is served as markdown at the same path</strong>, so an agent never has to parse HTML and never has to leave the markdown surface once it arrives.</li><li><strong>Machine-readable where it is cheap</strong>: <code>llms.txt</code>, <code>llms-full.txt</code>, and a claim index each site publishes for its own search. This hub syncs from those rather than from anything bespoke.</li><li><strong>The canonical URL is the intent, the link is the reality.</strong> While a domain is unconfigured, links go where the site actually serves <a class="chip st-v" href="../ledger/index.html#claim-domains-unconfigured" title="Verified by execution on this date, by us.">verified 8 Sep 2026</a> and the page says so.</li></ul>
+<h2 id="5-what-is-a-build-failure-rather-than-a-review-comment">5 · What is a build failure rather than a review comment</h2>
+<p>Learned by building the first site, and each one is enforced by a check rather than remembered:</p>
+<div class="tablewrap"><table><thead><tr><th>Check</th><th>Why it exists</th></tr></thead><tbody><tr><td>The build is <strong>reproducible</strong> — the committed output matches the sources</td><td>Markdown is the source of truth; a stale build publishes prose nobody wrote</td></tr><tr><td><strong>Version agreement</strong> across every page badge, the release history and both machine indexes</td><td>A blanket bump that misses a page ships two versions of one site</td></tr><tr><td><strong>Internal links resolve</strong>, and every canonical URL is on the host in <code>CNAME</code></td><td>The two ways a static site quietly breaks</td></tr><tr><td><strong>No root-absolute internal URL</strong></td><td>The first site shipped one and served unstyled under a project path for a day</td></tr><tr><td><strong>No bare <code>&lt;https://…&gt;</code> autolink</strong></td><td>It reaches the browser as an unknown tag and the URL vanishes from the page</td></tr><tr><td><strong>A key-shape scan</strong> over the whole tree, including the built output</td><td>These repositories are public; the vaults they came from were not</td></tr><tr><td><strong>Every claim cited</strong>, and every state dated</td><td>The contract, enforced instead of promised</td></tr><tr><td><strong>The disclosure line present</strong> on every page, and no vendor described as a collaborator it is not</td><td>A disclosure found at the bottom does the opposite of its job</td></tr></tbody></table></div>
+<h2 id="6-the-release-discipline">6 · The release discipline</h2>
+<p>The same as every other site in this estate: <strong>validate → tag → deploy</strong>, in that order, with a failure at any stage stopping the release. One file owns the version, the release commit's subject repeats it, and CI refuses to tag if the two disagree. Every push to the release branch is a minor.</p>
+<p>That is not ceremony. It is what makes "as of v0.2.1, this claim was verified" a statement somebody can check a year later.</p>
+<p class="pagenav"><a href="../ledger/index.html">Every claim on this site, with its state &rarr;</a>
+<a href="../disclosures/index.html">Disclosures &rarr;</a></p>
+</main>
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">providers<span>.sgit.ai</span></div>
+    <p class="nonaff"><b>Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider written about here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.</b></p>
+    <p>The index of the provider reports. This site holds no measurement of its own: every number
+       on it is synced from the provider site that made it, and every table says which site and
+       which version it came from.</p>
+    <p class="licence">This document is released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). The code that builds it is Apache-2.0.</p>
+    <p class="verline">site <a href="../versions/index.html">v0.1.0</a> &middot; <a href="../evidence/index.html">how the tables are made</a> &middot; <a href="../disclosures/index.html">disclosures</a> &middot; <a href="index.md" title="The same page as plain markdown">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>The argument</h4>
+    <a href="../index.html">Where the key goes</a>
+    <a href="../patterns/index.html">The four patterns</a>
+    <a href="../comparison/index.html">Comparison matrix</a>
+    <a href="../contract/index.html">What a provider site must publish</a>
+  </div>
+  <div>
+    <h4>The family</h4>
+    <a href="../sites/index.html">Every provider site</a>
+    <a href="../evidence/index.html">Where these tables come from</a>
+    <a href="../ledger/index.html">The hub's own claims</a>
+    <a href="../versions/index.html">Versions</a>
+    <a href="../disclosures/index.html">Disclosures</a>
+  </div>
+  <div>
+    <h4>The estate</h4>
+    <a href="https://sgit.ai/why/" rel="noopener">Why sgit exists</a>
+    <a href="https://sgit.ai/vault/sg-bridge.html" rel="noopener">The host bridge (pattern three)</a>
+    <a href="https://open-source.sgit.ai/practice/" rel="noopener">Two licences, three layers</a>
+    <a href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">This site's source</a>
+  </div>
+</div>
+<div class="footnote"><p>No analytics. No cookies. No third-party fonts, scripts or CDN &mdash; every byte of this site
+is served from this domain. This site makes no API call at all: it has no key bar and no lab. The labs live on the
+provider sites, where the key is.</p></div>
+</footer>
+</body>
+</html>

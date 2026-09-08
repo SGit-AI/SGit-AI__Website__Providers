@@ -1,0 +1,157 @@
+{
+ "version": "v0.1.0",
+ "built": "8 September 2026",
+ "pages": [
+  {
+   "url": "/",
+   "title": "Where the key goes \u2014 provider reports for people who have to deploy one",
+   "description": "The hub of the *.providers.sgit.ai family: four credential patterns, one page contract, and one site per provider reporting what it cost on a named workload, what broke, and where the key has to live.",
+   "lead": "One question decides most integrations and almost nobody writes it down: where does the credential live, and what bounds it. This is the hub for a family of sites that answer it one provider at a time \u2014 with dates, costs and failures attached.",
+   "headings": [
+    "The argument, in one paragraph",
+    "The family",
+    "The two axes",
+    "What makes this different from a review site",
+    "The one measurement worth reading first"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/comparison/",
+   "title": "Comparison \u2014 provider \u00d7 pattern",
+   "description": "One row per provider and product, one column per credential pattern, synced from each provider site's own published front-matter rather than kept here.",
+   "lead": "One row per provider and product, one column per pattern. This hub keeps no opinion of its own: every row is copied from that provider's site at sync time, so a wrong row is wrong on the provider's own page first \u2014 which is where a correction belongs.",
+   "headings": [
+    "How this table is made",
+    "Reading down the columns"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/contract/",
+   "title": "The contract \u2014 what a provider site owes",
+   "description": "The nine fixed sections, the six claim states, the composition rules and the build discipline that every site in this family obeys, so that a second provider is a Markdown file rather than a rewrite.",
+   "lead": "The reason a comparison across these sites means anything is that they are not free to answer different questions. This is the contract: nine sections, six states, and a short list of things that are build failures rather than review comments.",
+   "headings": [
+    "1 \u00b7 The nine sections, fixed",
+    "2 \u00b7 The rule that has already caught somebody",
+    "3 \u00b7 The six claim states",
+    "4 \u00b7 Composition rules",
+    "5 \u00b7 What is a build failure rather than a review comment",
+    "6 \u00b7 The release discipline"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/disclosures/",
+   "title": "Disclosures",
+   "description": "Every commercial relationship between this estate and any provider written about across this family, in one place. There are none. Created before any exists.",
+   "lead": "Every commercial relationship between this estate and any provider written about across this family, in one place \u2014 created before any relationship exists, so that the existence of a page about a vendor is not read as evidence of a relationship with them.",
+   "headings": [
+    "Pending, and recorded before it happens",
+    "The commitments this page makes",
+    "Non-affiliation",
+    "Corrections"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/evidence/",
+   "title": "Evidence \u2014 the six states, and the family's mix",
+   "description": "Every claim on every site in this family carries one of six verification states. Here is what each means, why the model exists, and how much of the family is actually verified rather than read in a vendor's documentation.",
+   "lead": "No claim without a state. Six of them, joined to the pages that make them at build time, so a claim cannot appear on a page without appearing in a ledger. This page says what they mean \u2014 and rolls up how much of the family is actually verified.",
+   "headings": [
+    "The six states",
+    "Why a model rather than a disclaimer",
+    "The mix, across the family",
+    "Where the claims live"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/ledger/",
+   "title": "The hub's own claim ledger",
+   "description": "This hub reports on other sites, so it makes few claims of its own \u2014 but the ones it makes are held to the same rule as the sites it indexes: every claim carries a state, a date and a source, and a claim that appears on a page and not in this table fails the build.",
+   "lead": "Six claims, because a hub should not have many. The measurements belong to the provider sites; what is left here is what the hub itself asserts \u2014 about the family, the domains, and the synced tables. Each row says how we know.",
+   "headings": [
+    "Why this table is short",
+    "What is not in this table"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/patterns/",
+   "title": "The four client-side credential patterns",
+   "description": "Client side is not one thing. It is four patterns that differ in where the credential lives and what bounds it \u2014 plus a second axis, what your tool keeps, and the intersection of the two.",
+   "lead": "\"Client side\" is not one thing. It is four patterns, and they differ in exactly two ways: where the credential lives, and what bounds it. Every provider site in this family answers with one of these, per product, because a vendor with several products has several answers.",
+   "headings": [
+    "The four",
+    "Why pattern three is different in kind",
+    "The second axis: what the tool keeps",
+    "What this means for a reader who has to ship"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/sites/",
+   "title": "The provider sites",
+   "description": "One site per provider, each answering the same nine sections about a different API. What is live, what is planned, and what adding one actually takes.",
+   "lead": "One site per provider, each answering the same questions about a different API. The point of a family rather than one big site is that the questions stay fixed while the answers vary \u2014 which is the only way the comparison means anything.",
+   "headings": [
+    "Why one site per provider rather than one page each",
+    "What adding a provider actually takes",
+    "What each site owes"
+   ],
+   "kind": "page"
+  },
+  {
+   "url": "/versions/",
+   "title": "Release history",
+   "description": "Every release of this site, with what changed. The version is owned by admin/build/version.txt, must appear in the release commit's subject, and CI verifies the two agree before it tags anything.",
+   "lead": "Every release of this hub, with what changed and when. The estate's convention: one file owns the version, the release commit's subject repeats it, and the pipeline refuses to tag anything if the two disagree.",
+   "headings": [
+    "How a release is made here",
+    "The sync is not part of the build"
+   ],
+   "kind": "page"
+  }
+ ],
+ "claims": [
+  {
+   "id": "family-live",
+   "state": "verified",
+   "date": "8 Sep 2026",
+   "claim": "One provider site is live \u2014 elevenlabs.providers.sgit.ai, at v0.3.0, with 49 claims of its own in its ledger. A second, OpenRouter, is specified and not built. This page's tables are synced from the live site's own published front-matter, not typed here."
+  },
+  {
+   "id": "domains-unconfigured",
+   "state": "verified",
+   "date": "8 Sep 2026",
+   "claim": "Neither canonical domain in this family resolves yet. providers.sgit.ai and elevenlabs.providers.sgit.ai are not pointed at their repositories, so both sites serve from their GitHub Pages project paths. Every cross-link here goes to where a site actually is; a build check fails if one points at a canonical domain instead."
+  },
+  {
+   "id": "patterns-canonical",
+   "state": "docs",
+   "date": "5 Sep 2026",
+   "claim": "The four client-side credential patterns \u2014 key in the page, bounded key, short-lived token, host holds the key \u2014 are the estate's own framing, first written down on 5 September 2026. They are canonical here; a provider site answers them rather than redefining them."
+  },
+  {
+   "id": "openrouter-402",
+   "state": "verified",
+   "date": "3 Sep 2026",
+   "claim": "At $4.79 used against a $5.00 provisioned limit, OpenRouter refused every audio request \u2014 402, this request requires at least $0.50 in balance for audio output, limit_source: openrouter_key_limit. The bound worked, which is the only evidence in this family that any of this is enforceable in practice rather than in a diagram."
+  },
+  {
+   "id": "no-per-key-spend-limit",
+   "state": "docs",
+   "date": "5 Sep 2026",
+   "claim": "ElevenLabs keys are scoped, not bounded: a key can be restricted to endpoints, and there is no per-key spend limit for text to speech. That asymmetry with OpenRouter is why the comparison table earns its place rather than being a feature grid."
+  },
+  {
+   "id": "sg-tts-spec",
+   "state": "spec",
+   "date": "",
+   "claim": "Pattern three for a voice API \u2014 the vault host holding the key and serving sg.tts.speak() \u2014 does not exist. It is specified on the ElevenLabs site and named here only in the future tense."
+  }
+ ]
+}

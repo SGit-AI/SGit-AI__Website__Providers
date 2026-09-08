@@ -1,0 +1,27 @@
+# providers.sgit.ai
+> site v0.1.0
+
+> The index of a family of independent provider reports, organised around one question:
+> where does the API credential live, and what bounds it. Four client-side credential
+> patterns, a site per provider, and every number synced from the site that measured it.
+> Not affiliated with, endorsed by, or sponsored by any provider indexed here.
+
+This hub runs no API and makes no measurement of its own. Its comparison tables are
+generated from each provider site's own published markdown and claim index; the
+sync date and each site's version are printed beside the tables. See /evidence/.
+
+Every factual claim this hub makes itself carries one of six states: verified, measured,
+vendor docs, specified-not-shipped, written-not-run, projected. The list is at /ledger/.
+Every page is also served as markdown at <page>/index.md.
+Licence: This document is released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0).
+
+## Pages
+- [Where the key goes — provider reports for people who have to deploy one](https://providers.sgit.ai/): The hub of the *.providers.sgit.ai family: four credential patterns, one page contract, and one site per provider reporting what it cost on a named workload, what broke, and where the key has to live.
+- [Comparison — provider × pattern](https://providers.sgit.ai/comparison/): One row per provider and product, one column per credential pattern, synced from each provider site's own published front-matter rather than kept here.
+- [The contract — what a provider site owes](https://providers.sgit.ai/contract/): The nine fixed sections, the six claim states, the composition rules and the build discipline that every site in this family obeys, so that a second provider is a Markdown file rather than a rewrite.
+- [Disclosures](https://providers.sgit.ai/disclosures/): Every commercial relationship between this estate and any provider written about across this family, in one place. There are none. Created before any exists.
+- [Evidence — the six states, and the family's mix](https://providers.sgit.ai/evidence/): Every claim on every site in this family carries one of six verification states. Here is what each means, why the model exists, and how much of the family is actually verified rather than read in a vendor's documentation.
+- [The hub's own claim ledger](https://providers.sgit.ai/ledger/): This hub reports on other sites, so it makes few claims of its own — but the ones it makes are held to the same rule as the sites it indexes: every claim carries a state, a date and a source, and a claim that appears on a page and not in this table fails the build.
+- [The four client-side credential patterns](https://providers.sgit.ai/patterns/): Client side is not one thing. It is four patterns that differ in where the credential lives and what bounds it — plus a second axis, what your tool keeps, and the intersection of the two.
+- [The provider sites](https://providers.sgit.ai/sites/): One site per provider, each answering the same nine sections about a different API. What is live, what is planned, and what adding one actually takes.
+- [Release history](https://providers.sgit.ai/versions/): Every release of this site, with what changed. The version is owned by admin/build/version.txt, must appear in the release commit's subject, and CI verifies the two agree before it tags anything.

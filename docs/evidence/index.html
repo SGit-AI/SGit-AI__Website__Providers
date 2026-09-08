@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Evidence — the six states, and the family&#x27;s mix &mdash; Where the key goes</title>
+<meta name="description" content="Every claim on every site in this family carries one of six verification states. Here is what each means, why the model exists, and how much of the family is actually verified rather than read in a vendor&#x27;s documentation.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://providers.sgit.ai/evidence/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="providers.sgit.ai">
+<meta property="og:url" content="https://providers.sgit.ai/evidence/">
+<meta property="og:title" content="Evidence — the six states, and the family&#x27;s mix">
+<meta property="og:description" content="Every claim on every site in this family carries one of six verification states. Here is what each means, why the model exists, and how much of the family is actually verified rather than read in a vendor&#x27;s documentation.">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<nav class="site"><div class="row"><a class="brand" href="../index.html">providers<span>.sgit.ai</span></a><a class="parent" href="https://sgit.ai/vault/sg-bridge.html" rel="noopener" title="The window.sg bridge on sgit.ai — the host that would hold the key under pattern three, which is what this site is part of">&#8599; part of <b>sgit.ai</b></a><span class="stage-pill">the index</span><a class="ver" href="../versions/index.html" title="Site release history">v0.1.0</a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button><div class="nav-items"><div class="ni"><a class="nl" href="../index.html">The argument</a></div><div class="ni"><a class="nl" href="../patterns/index.html">The four patterns</a></div><div class="ni"><a class="nl" href="../comparison/index.html">Comparison</a></div><div class="ni"><a class="nl" href="../sites/index.html">Provider sites</a></div><div class="ni"><a class="nl" href="../contract/index.html">The contract</a></div><div class="ni"><a class="nl here" href="../evidence/index.html">Evidence</a></div><div class="ni"><a class="nl" href="../disclosures/index.html">Disclosures</a></div></div><a class="gh" href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">&#9733; Source</a></div></nav>
+<div class="disclosure-strip"><div class="row"><b>Independent.</b> No commercial relationship with any provider
+indexed here &mdash; no credits, no programme, no agreement &mdash; checked 8 September 2026.
+<a href="../disclosures/index.html">Disclosures</a> &middot; <a href="../evidence/index.html">how every number here is evidenced</a></div></div>
+<main class="doc">
+<p class="crumb"><a href="../index.html">providers.sgit.ai</a> / Evidence — the six states, and the family&#x27;s mix</p>
+<h1>Evidence — the six states, and the family&#x27;s mix</h1>
+<p class="lead"><strong>No claim without a state.</strong> Six of them, joined to the pages that make them at build time, so a claim cannot appear on a page without appearing in a ledger. This page says what they mean — and rolls up how much of the family is actually verified.</p>
+<p class="prov">Prose from the video vault at commit <code>7d1916aca5f3</code>, 8 September 2026.  When the vault moves ahead, this page is behind &mdash; and says so rather than guessing.</p>
+<aside class="toc"><b>On this page</b><a class="lv2" href="#the-six-states">The six states</a><a class="lv2" href="#why-a-model-rather-than-a-disclaimer">Why a model rather than a disclaimer</a><a class="lv2" href="#the-mix-across-the-family">The mix, across the family</a><a class="lv2" href="#where-the-claims-live">Where the claims live</a></aside>
+<h2 id="the-six-states">The six states</h2>
+<div class="tablewrap"><table><thead><tr><th>Chip</th><th>Means</th><th>What you may do with it</th></tr></thead><tbody><tr><td><span class="chip st-v" title="Verified by execution on this date, by us.">verified</span></td><td>Somebody ran it and watched it work, on that date, in a named place</td><td>Treat as fact for that date and that setup</td></tr><tr><td><span class="chip st-m" title="Measured by our own pipeline on a named workload and date.">measured</span></td><td>Our own pipeline produced this number on a named workload</td><td>Treat as fact about <em>our</em> workload; yours will differ</td></tr><tr><td><span class="chip st-d" title="Read from the vendor&#x27;s documentation on this date. Never executed by us.">vendor docs</span></td><td>Read in the vendor's documentation on that date; never executed by us</td><td>Check it against the vendor before relying on it — and tell us if it moved</td></tr><tr><td><span class="chip st-s" title="A specification. It does not exist yet.">specified, not shipped</span></td><td>A written specification for something that does not exist</td><td>Never plan around it. Future tense only</td></tr><tr><td><span class="chip st-u" title="Code we wrote and have never executed.">written, not run</span></td><td>Code we wrote and have never executed</td><td>Read it, then run it and find out. Expect it to be wrong somewhere</td></tr><tr><td><span class="chip st-p" title="Arithmetic, not an invoice. The workings are shown.">projected</span></td><td>Arithmetic, with its workings shown</td><td>Re-do the arithmetic with your own numbers</td></tr></tbody></table></div>
+<h2 id="why-a-model-rather-than-a-disclaimer">Why a model rather than a disclaimer</h2>
+<p>Because the alternative is a page that is <em>mostly</em> true and gives you no way to tell which parts.</p>
+<p>The first site in this family was written by a machine that <strong>could not reach the API it was documenting</strong>. A small, specific set of things was verified in a browser by a human; everything else was read from the vendor's reference. A disclaimer at the top would have covered both and distinguished neither. Six states, attached per sentence and joined to a table, mean a reader can see exactly which half they are standing on.</p>
+<p><strong>It also changes what a correction is.</strong> When that site's first render finally ran, four claims changed state in one afternoon and two predictions turned out wrong. With a ledger, that is a dated row moving from <code>written, not run</code> to <code>verified</code> — visible, checkable, and worth publishing. Without one, it is a paragraph quietly rewritten.</p>
+<h2 id="the-mix-across-the-family">The mix, across the family</h2>
+<div class="tiles tiles-sm"><div class="tile"><b>14</b><span>verified</span></div><div class="tile"><b>8</b><span>measured</span></div><div class="tile"><b>14</b><span>vendor docs</span></div><div class="tile"><b>2</b><span>specified, not shipped</span></div><div class="tile"><b>8</b><span>written, not run</span></div><div class="tile"><b>3</b><span>projected</span></div></div><div class="tablewrap"><table><thead><tr><th>Site</th><th>Claims</th><th>Mix</th><th>verified</th><th>measured</th><th>vendor docs</th><th>specified, not shipped</th><th>written, not run</th><th>projected</th></tr></thead><tbody><tr><th scope="row"><a href="https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs/ledger/" rel="noopener">ElevenLabs</a></th><td>49</td><td class="ebars"><span class="ebar st-d" style="width:28.6%" title="docs: 14"></span><span class="ebar st-m" style="width:16.3%" title="measured: 8"></span><span class="ebar st-p" style="width:6.1%" title="projected: 3"></span><span class="ebar st-s" style="width:4.1%" title="spec: 2"></span><span class="ebar st-u" style="width:16.3%" title="unrun: 8"></span><span class="ebar st-v" style="width:28.6%" title="verified: 14"></span></td><td>14</td><td>8</td><td>14</td><td>2</td><td>8</td><td>3</td></tr></tbody></table></div><p class="small dim">Synced 2026-09-08 from each site's published claim index.</p>
+<p><strong>Read the <code>docs</code> column as the honest debt.</strong> Those are facts taken from a vendor's own documentation and never executed by anybody here — true when read, on the date shown, and the first thing to check if something behaves oddly. <strong>Read <code>unrun</code> as the invitation:</strong> code published so somebody can run it, badged so nobody mistakes it for tested.</p>
+<p><strong>And read <code>verified</code> narrowly.</strong> It means somebody watched it work once, in one place, on one account tier. The most-cited verified claim in this family — that a provider's alignment matches its audio to the millisecond — was measured on nine files on a free-tier key in one afternoon. That is enormously better than a guess, and it is not a guarantee.</p>
+<h2 id="where-the-claims-live">Where the claims live</h2>
+<p>Each provider site keeps its own ledger, publishes it as a page, and publishes a machine-readable index of it that this hub syncs. <strong>The hub does not hold a copy of anybody's claims</strong> — the counts above are read from those indexes at sync time <a class="chip st-v" href="../ledger/index.html#claim-family-live" title="Verified by execution on this date, by us.">verified 8 Sep 2026</a>, and the links go to the ledgers themselves.</p>
+<p class="pagenav"><a href="../ledger/index.html">Every claim on this site, with its state &rarr;</a>
+<a href="../disclosures/index.html">Disclosures &rarr;</a></p>
+</main>
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">providers<span>.sgit.ai</span></div>
+    <p class="nonaff"><b>Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider written about here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.</b></p>
+    <p>The index of the provider reports. This site holds no measurement of its own: every number
+       on it is synced from the provider site that made it, and every table says which site and
+       which version it came from.</p>
+    <p class="licence">This document is released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). The code that builds it is Apache-2.0.</p>
+    <p class="verline">site <a href="../versions/index.html">v0.1.0</a> &middot; <a href="../evidence/index.html">how the tables are made</a> &middot; <a href="../disclosures/index.html">disclosures</a> &middot; <a href="index.md" title="The same page as plain markdown">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>The argument</h4>
+    <a href="../index.html">Where the key goes</a>
+    <a href="../patterns/index.html">The four patterns</a>
+    <a href="../comparison/index.html">Comparison matrix</a>
+    <a href="../contract/index.html">What a provider site must publish</a>
+  </div>
+  <div>
+    <h4>The family</h4>
+    <a href="../sites/index.html">Every provider site</a>
+    <a href="../evidence/index.html">Where these tables come from</a>
+    <a href="../ledger/index.html">The hub's own claims</a>
+    <a href="../versions/index.html">Versions</a>
+    <a href="../disclosures/index.html">Disclosures</a>
+  </div>
+  <div>
+    <h4>The estate</h4>
+    <a href="https://sgit.ai/why/" rel="noopener">Why sgit exists</a>
+    <a href="https://sgit.ai/vault/sg-bridge.html" rel="noopener">The host bridge (pattern three)</a>
+    <a href="https://open-source.sgit.ai/practice/" rel="noopener">Two licences, three layers</a>
+    <a href="https://github.com/SGit-AI/SGit-AI__Website__Providers" rel="noopener">This site's source</a>
+  </div>
+</div>
+<div class="footnote"><p>No analytics. No cookies. No third-party fonts, scripts or CDN &mdash; every byte of this site
+is served from this domain. This site makes no API call at all: it has no key bar and no lab. The labs live on the
+provider sites, where the key is.</p></div>
+</footer>
+</body>
+</html>

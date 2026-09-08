@@ -475,6 +475,18 @@ def shortcodes_inline(text, ctx):
         ctx["claim_uses"].setdefault(cid, set()).add(ctx["page"])
         return chip(c["state"], c.get("date_label"), cid)
 
+    def live_ref(m):
+        """{{live:Name}} and {{live:Name|path}} — a provider's base URL, resolved
+        at build time from the measured `live:` in providers.yml. Typing a
+        provider URL into prose is how a page ends up linking a host that stopped
+        serving; this cannot, because it is the same value the tables use."""
+        name, _, path = m.group(1).partition("|")
+        for prov in _providers()["providers"]:
+            if prov["name"].lower() == name.strip().lower():
+                return _live(prov) + "/" + path.strip().lstrip("/")
+        raise SystemExit(f"build: unknown provider {name!r} referenced by {ctx['page']}")
+
+    text = re.sub(r"\{\{live:([^}]+)\}\}", live_ref, text)
     text = re.sub(r"\{\{claim:([a-z0-9-]+)\}\}", claim_ref, text)
     text = re.sub(
         r"\{\{badge:([a-z]+)(?:\|([^}]+))?\}\}",
@@ -522,9 +534,10 @@ def _providers():
 
 
 def _live(p):
-    """Where a site actually serves today. The canonical domains in this family are
-    not configured yet, so a link to one is a dead link and a link to the other is a
-    working one — this returns the working one and the pages say why."""
+    """Where a site actually serves today, as measured by bin/sync-providers.py
+    rather than assumed: the canonical host once a probe of it returns that site's
+    own index, and the GitHub Pages project path until then. Every link to a
+    provider on this site goes through here, so none of them can be typed."""
     return (p.get("live") or p.get("canonical", "")).rstrip("/")
 
 
@@ -536,7 +549,10 @@ def block_family(ctx):
     for p in data["providers"]:
         chips = "".join(chip(st) for st in (p.get("state_chips") or []))
         pending = p.get("state") == "planned"
-        note = "" if p.get("live") == p.get("canonical") else ' &middot; <b>not resolving yet</b>'
+        # The probe's answer, not the shape of the URL: a planned site's canonical
+        # equals its live value and still does not resolve, so asking whether the
+        # two match would call it live when nothing serves it.
+        note = "" if p.get("canonical_resolves") == "yes" else ' &middot; <b>not serving yet</b>'
         body = (
             f'<span class="tag">{html.escape(str(p.get("kind", "provider")))}</span>'
             f'<h3>{html.escape(p["name"])}</h3>'

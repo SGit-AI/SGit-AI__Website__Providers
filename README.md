@@ -10,8 +10,8 @@ tables — which are **synced from the provider sites rather than written here**
 
 | | |
 |---|---|
-| Canonical host | `providers.sgit.ai` (see *DNS*, below) |
-| Currently served from | `https://sgit-ai.github.io/SGit-AI__Website__Providers` |
+| Live at | `https://providers.sgit.ai` |
+| Served by | GitHub Pages from `docs/` on `dev` |
 | Build | `python3 build.py` — no dependencies, no network |
 | Gate | `admin/build/validate.sh` — build, site checks, secret scan, scripts |
 | Release | push to `dev`; CI validates, tags `vX.Y.Z`, deploys `docs/` |
@@ -69,13 +69,18 @@ git push -u origin dev
 
 ## DNS
 
-Neither `providers.sgit.ai` nor `elevenlabs.providers.sgit.ai` is pointed at its repository
-yet, so both sites serve from their GitHub Pages project paths. The site is built entirely
-with page-relative URLs and is checked for that (`check_relative_urls`), so it works at a
-domain root, a project path, a local directory or a vault frame without changes — and
-`check_family_links_live` fails the build if a page links a provider by a canonical domain
-that does not resolve. `docs/CNAME` already carries the intended host, so pointing the DNS
-is the only remaining step.
+Both canonical hosts serve as of 8 September 2026: `providers.sgit.ai` and
+`elevenlabs.providers.sgit.ai`. They were unpointed for the whole of v0.1.0, and that is
+why the family links are not typed anywhere in this repository — `bin/sync-providers.py`
+probes each canonical host by fetching that site's own published index from it, records
+the answer as `live:` and `canonical_resolves:` in `data/providers.yml`, and every link the
+build emits goes through that value. `check_family_links_live` fails the build if a page
+disagrees with it in either direction: it caught canonical links while the domains were
+dead, and it now catches a stale project-path link left behind after they came up.
+
+The site is also built entirely with page-relative URLs (`check_relative_urls`), so it
+works at a domain root, a Pages project path, a local directory or a vault frame without
+changes — which is what made the switch a data change rather than an edit.
 
 ## Licence
 

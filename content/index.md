@@ -10,7 +10,7 @@ provenance:
   note: "The four patterns come from the source vault; everything about a provider comes from that provider's own site."
 ---
 
-<div class="warnbox"><p><b>Neither domain in this family resolves yet.</b> {{claim:domains-unconfigured}} <code>providers.sgit.ai</code> and <code>elevenlabs.providers.sgit.ai</code> are not yet pointed at their repositories, so both sites serve from their GitHub Pages project paths — and every link here goes to where a site <em>actually is</em> rather than where it will be. A build check fails if one points at a canonical domain instead, because a hub whose links are all dead is worse than no hub.</p></div>
+<div class="note"><p><b>Both domains in this family now serve.</b> {{claim:domains-live}} <code>providers.sgit.ai</code> and <code>elevenlabs.providers.sgit.ai</code> were unpointed for the whole of this site's first release, which is why the links here are not typed but <em>measured</em>: <code>bin/sync-providers.py</code> fetches each site's own published index from its canonical host, and every cross-link goes to whichever host answered. A build check fails if a link disagrees — which caught canonical links while the domains were dead, and now catches a stale project path left behind after they came up.</p></div>
 
 ## The argument, in one paragraph
 
@@ -34,7 +34,7 @@ Everything in this family is indexed on two questions that are usually mixed tog
 
 **Every claim carries a state.** Six of them, from *verified by execution on this date* to *specified and not shipped*, joined to the pages that make them at build time. A claim that appears on a page and not in a ledger fails the build. [How that works, and the current mix across the family →](/evidence/)
 
-**The failures are published.** Including our own: the first render in this family broke four times before it made a sound, and [one of the four was our bug rather than the vendor's](https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs/video/).
+**The failures are published.** Including our own: the first render in this family broke four times before it made a sound, and [one of the four was our bug rather than the vendor's]({{live:ElevenLabs|video/}}).
 
 **And there is no commercial relationship with anybody.** [None](/disclosures/), checked and dated, with the page built before there was anything to disclose so that its later appearance cannot be read as a signal.
 

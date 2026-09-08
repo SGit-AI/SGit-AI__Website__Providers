@@ -1,4 +1,4 @@
-# Handback — providers.sgit.ai v0.1.0
+# Handback — providers.sgit.ai v0.1.1
 
 What was built, what is verified, and the four things that need a human.
 
@@ -29,14 +29,15 @@ admin/build/validate.sh
 ── 2/4  site gate  check_site: 9 pages pass every acceptance assertion
 ── 3/4  secrets    secret-scan: clean (10 patterns, whole tree including docs/)
 ── 4/4  scripts    check-js: all scripts parse
-validate: OK — v0.1.0 on providers.sgit.ai
+validate: OK — v0.1.1 on providers.sgit.ai
 ```
 
 Two checks are specific to this repository and worth knowing about:
 
-- **`check_family_links_live`** fails the build if any page links a provider by a canonical
-  domain that does not resolve. Because neither domain is pointed yet, every family link
-  goes to the GitHub Pages project path where the site actually serves.
+- **`check_family_links_live`** fails the build if any page links a provider anywhere other
+  than where that site was *measured* to be serving. It is correct in both directions: it
+  caught canonical links while the domains were unpointed, and it now catches a stale
+  project-path link left behind after they came up.
 - **`check_four_patterns`** is the hub's equivalent of the provider sites' nine-section
   check: all four patterns present, in order, on the page that is canonical for them.
 
@@ -54,14 +55,14 @@ not wired into CI: a sync is a dated act, and CI silently refreshing it would de
 
 Last sync: **2026-09-08**, against ElevenLabs at site v0.3.0.
 
-## Four things that need a human
+## Where things stand
 
-1. **DNS.** Neither `providers.sgit.ai` nor `elevenlabs.providers.sgit.ai` is pointed at its
-   repository. `docs/CNAME` already carries the intended host for each site, and both sites
-   are built entirely with page-relative URLs (enforced by `check_relative_urls`), so
-   pointing the DNS is the only remaining step — nothing in either repository changes.
-2. **GitHub Pages source.** Set Pages to *GitHub Actions* for this repository. The workflow
-   passes `enablement: true`, which usually suffices, but the first deploy is worth watching.
+1. **DNS — done, and worth knowing what changed.** Both canonical hosts now serve; they were
+   unpointed for the whole of v0.1.0. Nothing in either repository was edited to follow them:
+   `bin/sync-providers.py` re-probed, `data/providers.yml` changed, and the links moved. That
+   is the intended shape — a family link is a measurement here, not a string.
+2. **GitHub Pages source — done.** Pages is serving from the workflow; v0.1.0 deployed and
+   tagged on the first run, and the site answers on the canonical host.
 3. **The second provider.** OpenRouter is in `data/providers.yml` as `planned`, with its
    pattern-one capability recorded from the ElevenLabs site's stub. Building it is what will
    actually test the claim in `/sites/` — that adding a provider needs a repository, a

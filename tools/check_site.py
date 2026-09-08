@@ -201,17 +201,30 @@ def check_four_patterns():
 
 
 def check_family_links_live():
-    """Neither canonical domain in this family resolves yet. A hub whose links are
-    all dead is worse than no hub, so every provider link must point at where that
-    site actually serves — and the pages must say why."""
-    import json
-    data = (ROOT / "data" / "providers.yml").read_text()
+    """A hub whose links are dead is worse than no hub. Every link to a provider
+    must go to where that site is *serving today* — the `live:` value in
+    providers.yml, which bin/sync-providers.py sets from an actual probe of the
+    canonical host rather than from an assumption about DNS. That makes this check
+    correct in both directions: it caught canonical links while the domains were
+    unpointed, and it now catches a stale project-path link left behind after they
+    were pointed."""
+    sys.path.insert(0, str(ROOT))
+    import build  # noqa: E402
+    data = build.yaml_load((ROOT / "data" / "providers.yml").read_text())
     html_all = "\n".join(p.read_text() for p in pages())
-    for line in data.split("\n"):
-        if line.strip().startswith("canonical:") and "://" in line:
-            host = line.split("://", 1)[1].strip()
-            if f'href="https://{host}/"' in html_all:
-                fail(f"a provider is linked by its canonical domain ({host}), which does not resolve yet")
+    for prov in data.get("providers", []):
+        name = prov.get("name", "?")
+        canonical = str(prov.get("canonical", "")).rstrip("/")
+        live = str(prov.get("live") or canonical).rstrip("/")
+        resolves = str(prov.get("canonical_resolves", "no")) == "yes"
+        # Linking a canonical host that does not serve is a dead link.
+        if canonical != live and f'href="{canonical}/"' in html_all:
+            fail(f"{name} is linked by {canonical}, which does not serve that site — link {live} until it does")
+        # And once it does serve, a link left on the project path is stale.
+        if resolves:
+            for m in re.finditer(r'href="(https://[a-z0-9.-]*github\.io/[^"]*)"', html_all):
+                fail(f"{name} serves at {live} but a page still links the project path {m.group(1)}")
+                break
 
 
 def check_every_claim_cited():

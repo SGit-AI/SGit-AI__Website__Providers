@@ -1,5 +1,5 @@
 {
- "version": "v0.1.0",
+ "version": "v0.1.1",
  "built": "8 September 2026",
  "pages": [
   {
@@ -124,10 +124,10 @@
    "claim": "One provider site is live \u2014 elevenlabs.providers.sgit.ai, at v0.3.0, with 49 claims of its own in its ledger. A second, OpenRouter, is specified and not built. This page's tables are synced from the live site's own published front-matter, not typed here."
   },
   {
-   "id": "domains-unconfigured",
+   "id": "domains-live",
    "state": "verified",
    "date": "8 Sep 2026",
-   "claim": "Neither canonical domain in this family resolves yet. providers.sgit.ai and elevenlabs.providers.sgit.ai are not pointed at their repositories, so both sites serve from their GitHub Pages project paths. Every cross-link here goes to where a site actually is; a build check fails if one points at a canonical domain instead."
+   "claim": "Both canonical domains now serve. providers.sgit.ai and elevenlabs.providers.sgit.ai were reported unconfigured earlier the same day; on the release of v0.1.1 each was probed by fetching that site's own published index from the canonical host, and each returned it. live: in data/providers.yml is the result of that probe, not an assumption, and a build check fails if a link disagrees with it in either direction."
   },
   {
    "id": "patterns-canonical",

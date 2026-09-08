@@ -1,5 +1,5 @@
 # providers.sgit.ai
-> site v0.1.0
+> site v0.1.1
 
 > The index of a family of independent provider reports, organised around one question:
 > where does the API credential live, and what bounds it. Four client-side credential

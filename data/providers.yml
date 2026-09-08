@@ -7,7 +7,8 @@ synced: 2026-09-08
 providers:
   - name: ElevenLabs
     canonical: https://elevenlabs.providers.sgit.ai
-    live: https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs
+    live: https://elevenlabs.providers.sgit.ai
+    canonical_resolves: yes
     kind: voice · text to speech
     summary: "Text to speech with character-level timestamps. Scoped keys, no per-key spend limit, and the first render's four failures."
     state: live
@@ -54,6 +55,7 @@ providers:
   - name: OpenRouter
     canonical: https://openrouter.providers.sgit.ai
     live: https://openrouter.providers.sgit.ai
+    canonical_resolves: no
     kind: models · one API, many models
     summary: "Provisioned keys with a spend limit and a reset — the one provider in this family that can do pattern one. Not built yet."
     state: planned

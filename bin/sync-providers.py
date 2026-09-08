@@ -16,6 +16,7 @@ wherever the data appears, and the site builds offline and reproducibly in CI.
 import json
 import re
 import sys
+import urllib.error
 import urllib.request
 from datetime import date
 from pathlib import Path
@@ -29,6 +30,22 @@ def fetch(url):
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.read().decode("utf-8")
+
+
+def serves(base, marker):
+    """Does this host actually serve this site right now?
+
+    Not "does the name resolve" — a canonical domain can resolve to the Pages
+    edge and still 404, or redirect somewhere else entirely, and either way the
+    link is dead. So the probe fetches the site's own published index from that
+    host and requires a marker only that site's index carries. `live:` in
+    providers.yml is the result of this call, which is why the pages can carry a
+    dated claim about it rather than a promise."""
+    try:
+        idx = json.loads(fetch(f"{base.rstrip('/')}/assets/site-index.json"))
+    except (urllib.error.URLError, OSError, ValueError):
+        return False
+    return marker in json.dumps(idx, ensure_ascii=False)
 
 
 def front_matter(md):
@@ -47,9 +64,11 @@ def indent(block, spaces):
 def main():
     check = "--check" in sys.argv
     sites = [
-        # name, canonical host, where it actually serves today, kind, summary
+        # name, canonical host, the project path to fall back to, a string that
+        # proves the host is serving THIS site, kind, summary
         ("ElevenLabs", "https://elevenlabs.providers.sgit.ai",
          "https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs",
+         "ElevenLabs \u2014 text to speech",
          "voice · text to speech",
          "Text to speech with character-level timestamps. Scoped keys, no per-key spend limit, "
          "and the first render's four failures."),
@@ -69,8 +88,13 @@ def main():
         f"synced: {date.today().isoformat()}",
         "providers:",
     ]
-    for name, canonical, live, kind, summary in sites:
-        base = (live or canonical).rstrip("/")
+    for name, canonical, fallback, marker, kind, summary in sites:
+        # The canonical host wins the moment it actually serves the site; until
+        # then the fallback does, and the yml records which — dated, so the pages
+        # can say it rather than assume it.
+        canonical_live = serves(canonical, marker)
+        live = canonical if canonical_live else fallback
+        base = live.rstrip("/")
         md = fetch(f"{base}/index.md")
         fm = front_matter(md)
         pat = re.search(r"^patterns:\n(.*?)(?=^\w|\Z)", fm, re.S | re.M)
@@ -81,7 +105,8 @@ def main():
         out += [
             f"  - name: {name}",
             f"    canonical: {canonical}",
-            f"    live: {live or canonical}",
+            f"    live: {live}",
+            f"    canonical_resolves: {'yes' if canonical_live else 'no'}",
             f"    kind: {kind}",
             f'    summary: "{summary}"',
             "    state: live",
@@ -96,6 +121,7 @@ def main():
             f"  - name: {name}",
             f"    canonical: {canonical}",
             f"    live: {live or canonical}",
+            "    canonical_resolves: no",
             f"    kind: {kind}",
             f'    summary: "{summary}"',
             "    state: planned",
@@ -112,6 +138,9 @@ def main():
         return 1 if drift else 0
     DATA.write_text(text)
     print(f"synced {len(sites)} live and {len(planned)} planned provider(s) -> {DATA.relative_to(ROOT)}")
+    for line in text.split("\n"):
+        if line.strip().startswith(("live:", "canonical_resolves:")):
+            print("  " + line.strip())
     return 0
 
 

@@ -1,5 +1,5 @@
 # providers.sgit.ai — the whole site as markdown
-site v0.1.0 · source vault commit 7d1916aca5f3 · every claim's verification state is at /ledger/
+site v0.1.1 · source vault commit 7d1916aca5f3 · every claim's verification state is at /ledger/
 
 Independent work by SGit-AI. Not affiliated with, endorsed by, or sponsored by any provider indexed here. Provider names identify the APIs these pages report on; all trademarks belong to their owners.
 
@@ -22,7 +22,7 @@ provenance:
   note: "The four patterns come from the source vault; everything about a provider comes from that provider's own site."
 ---
 
-<div class="warnbox"><p><b>Neither domain in this family resolves yet.</b> {{claim:domains-unconfigured}} <code>providers.sgit.ai</code> and <code>elevenlabs.providers.sgit.ai</code> are not yet pointed at their repositories, so both sites serve from their GitHub Pages project paths — and every link here goes to where a site <em>actually is</em> rather than where it will be. A build check fails if one points at a canonical domain instead, because a hub whose links are all dead is worse than no hub.</p></div>
+<div class="note"><p><b>Both domains in this family now serve.</b> {{claim:domains-live}} <code>providers.sgit.ai</code> and <code>elevenlabs.providers.sgit.ai</code> were unpointed for the whole of this site's first release, which is why the links here are not typed but <em>measured</em>: <code>bin/sync-providers.py</code> fetches each site's own published index from its canonical host, and every cross-link goes to whichever host answered. A build check fails if a link disagrees — which caught canonical links while the domains were dead, and now catches a stale project path left behind after they came up.</p></div>
 
 ## The argument, in one paragraph
 
@@ -46,7 +46,7 @@ Everything in this family is indexed on two questions that are usually mixed tog
 
 **Every claim carries a state.** Six of them, from *verified by execution on this date* to *specified and not shipped*, joined to the pages that make them at build time. A claim that appears on a page and not in a ledger fails the build. [How that works, and the current mix across the family →](/evidence/)
 
-**The failures are published.** Including our own: the first render in this family broke four times before it made a sound, and [one of the four was our bug rather than the vendor's](https://sgit-ai.github.io/SGit-AI__Website__Provider__ElevenLabs/video/).
+**The failures are published.** Including our own: the first render in this family broke four times before it made a sound, and [one of the four was our bug rather than the vendor's]({{live:ElevenLabs|video/}}).
 
 **And there is no commercial relationship with anybody.** [None](/disclosures/), checked and dated, with the page built before there was anything to disclose so that its later appearance cannot be read as a signal.
 
@@ -145,7 +145,7 @@ Every factual claim on every site in this family carries one of these, and the j
 - **A cross-link points at the page that answers the question**, never at a domain. A domain link is a referral rather than a composition, and it is this family's one recorded defect.
 - **Every page is served as markdown at the same path**, so an agent never has to parse HTML and never has to leave the markdown surface once it arrives.
 - **Machine-readable where it is cheap**: `llms.txt`, `llms-full.txt`, and a claim index each site publishes for its own search. This hub syncs from those rather than from anything bespoke.
-- **The canonical URL is the intent, the link is the reality.** While a domain is unconfigured, links go where the site actually serves {{claim:domains-unconfigured}} and the page says so.
+- **The canonical URL is the intent, the link is the reality.** A link goes wherever that site is measured to be serving, which is the canonical host once it answers and the project path before it does {{claim:domains-live}} — and the page says which.
 
 ## 5 · What is a build failure rather than a review comment
 
@@ -418,6 +418,7 @@ order: 95
 
 <div class="tablewrap"><table class="vers"><thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead><tbody>
 <!-- releases -->
+    <tr><td class="vnum">v0.1.1</td><td>2026-09-08</td><td>Both canonical domains came up hours after v0.1.0 shipped, so where a provider site serves is now measured rather than assumed: bin/sync-providers.py probes each canonical host by fetching that site's own published index from it, records the answer as live: and canonical_resolves: in data/providers.yml, and every family link the build emits — cards, comparison rows, prose — resolves through that value via a new `live:` shortcode, so no provider URL is typed anywhere. check_family_links_live now fails in both directions: a canonical link while a domain is dead, and a stale project-path link after it comes up. The claim that both domains were unconfigured is replaced by a dated claim that both now serve, sourced from the probe rather than from a report.</td></tr>
     <tr><td class="vnum">v0.1.0</td><td>2026-09-08</td><td>First release. The hub of the *.providers.sgit.ai family: the four credential patterns as canonical shared content with the capability-tier axis and their intersection; a comparison matrix synced from each provider site's own published front-matter rather than kept here; the family index; the page contract every provider site obeys, including the per-product rule that has already caught somebody; the six claim states with a roll-up of the family's actual mix; estate-wide disclosures; and the estate pipeline — validate → tag → deploy, a secret scan, relative URLs and a licence stamp, all enforced rather than promised.</td></tr>
 </tbody></table></div>
 
